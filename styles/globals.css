@@ -1,9 +1,36 @@
+@font-face {
+  font-family: 'Vermin Vibes 1989';
+  src: url('Vermin-Vibes-1989.woff2') format('woff2'),
+    url('Vermin-Vibes-1989.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trade Winds';
+    src: url('TradeWinds.woff2') format('woff2'),
+        url('TradeWinds.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
+  background-color: #121617;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+h2 {
+  font-size: 2.5em;
 }
 
 a {
