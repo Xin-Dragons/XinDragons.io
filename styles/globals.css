@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Vermin Vibes 1989';
-  src: url('Vermin-Vibes-1989.woff2') format('woff2'),
-    url('Vermin-Vibes-1989.woff') format('woff');
+  src: url('/Vermin-Vibes-1989.woff2') format('woff2'),
+    url('/Vermin-Vibes-1989.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
     font-family: 'Trade Winds';
-    src: url('TradeWinds.woff2') format('woff2'),
-        url('TradeWinds.woff') format('woff');
+    src: url('/TradeWinds.woff2') format('woff2'),
+        url('/TradeWinds.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
