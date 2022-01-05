@@ -111,12 +111,12 @@ export default function Home() {
             <div className={styles.social}>
               <Link href="https://twitter.com/XinDragons">
                 <a>
-                  <Image src="/twitter.svg" alt="Xin Dragons Twitter" width={26} height={21} />
+                  <img src="/twitter.svg" alt="Xin Dragons Twitter" width={26} height={21} />
                 </a>
               </Link>
               <Link href="https://twitter.com/XinDragons">
                 <a>
-                  <Image src="/discord.svg" alt="Xin Dragons Discord" width={26} height={20} />
+                  <img src="/discord.svg" alt="Xin Dragons Discord" width={26} height={20} />
                 </a>
               </Link>
             </div>
