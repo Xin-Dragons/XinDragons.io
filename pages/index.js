@@ -80,6 +80,10 @@ export default function Home() {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        <link rel="preload" href="Vermin-Vibes-1989.woff" as="font" crossOrigin="" type="font/woff" />
+        <link rel="preload" href="Vermin-Vibes-1989.woff2" as="font" crossOrigin="" type="font/woff2" />
+        <link rel="preload" href="TradeWinds.woff" as="font" crossOrigin="" type="font/woff" />
+        <link rel="preload" href="TradeWinds.woff2" as="font" crossOrigin="" type="font/woff2" />
       </Head>
 
       <main className={styles.main}>
