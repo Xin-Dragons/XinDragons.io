@@ -107,21 +107,23 @@ export default function Home() {
             <div className={styles.social}>
               <Link href="https://twitter.com/XinDragons">
                 <a>
-                  <img src="/twitter.svg" alt="Xin Dragons Twitter"/>
+                  <Image src="/twitter.svg" alt="Xin Dragons Twitter" width={26} height={21} />
                 </a>
               </Link>
               <Link href="https://twitter.com/XinDragons">
                 <a>
-                  <img src="/discord.svg" alt="Xin Dragons Discord"/>
+                  <Image src="/discord.svg" alt="Xin Dragons Discord" width={26} height={20} />
                 </a>
               </Link>
             </div>
           </header>
 
-          <img className={styles.baby} src="/bebe.png" />
+          <div className={styles.baby}>
+            <Image src="/bebe.png" alt="Xin Dragons Baby" width={161} height={280} />
+          </div>
 
           <h1 className={styles.title}>
-            <img src="/logo.png" alt="Xin Dragons" />
+            <Image src="/logo.png" alt="Xin Dragons" width={409} height={353} />
           </h1>
 
           <section className={styles.section}>
