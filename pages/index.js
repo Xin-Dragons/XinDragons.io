@@ -235,7 +235,7 @@ export default function Home() {
         <div className={styles['roadmap-inner']}>
           {
             phases.map((phase, index) => (
-              <div className={classnames(styles.phase, styles[phase.align])} style={{ top: `${phase.offset}px` }}>
+              <div key={index} className={classnames(styles.phase, styles[phase.align])} style={{ top: `${phase.offset}px` }}>
                 <h3 className={classnames(styles.heading, styles[phase.color])}>{`Phase ${index + 1} - ${phase.title}`}</h3>
                 <div className={styles['phase-inner']}>
                   {
