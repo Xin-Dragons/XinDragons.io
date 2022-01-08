@@ -172,7 +172,7 @@ $font-color: #D1BFB3;
 
 .phase {
   position: absolute;
-  max-width: 471px;
+  width: 471px;
   color: $light-grey;
   &.left {
     left: 0;
@@ -446,6 +446,8 @@ ul.align-left {
   .phase {
     position: static;
     margin: 0 auto 50px auto;
+    max-width: 471px;
+    width: unset;
   }
 }
 
