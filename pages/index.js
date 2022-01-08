@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -33,7 +34,7 @@ const cards = [
     src: '/gargoyle-purple.png',
     title: 'Gargoyle Purple',
     color: 'gargoyle-purple',
-    text: 'lorem ipsum'
+    text: 'Powerful and evil dragon that often makes floods.'
   },
   {
     src: '/chinese.png',
@@ -57,7 +58,7 @@ const cards = [
     src: '/gargoyle.png',
     title: 'Gargoyle',
     color: 'gargoyle',
-    text: 'Lives in the seas, rivers, lakes, or underground. It can control the flow of rivers or streams.'
+    text: 'In ancient China, this dragon is often linked to catastrophes like storms and floods.'
   },
   {
     src: '/xin.png',
@@ -65,7 +66,76 @@ const cards = [
     color: 'xin',
     text: 'Lucky Dragons, it is said that they bring luck to their holders'
   }
+];
+
+const phases = [
+  {
+    title: 'Starting up',
+    color: 'grey-green',
+    align: 'left',
+    offset: 100,
+    steps: [
+      'Minting of 887 Xin Dragons',
+      'Listing them on secondary Marketplace',
+      'Setup holder verification'
+    ]
+  },
+  {
+    title: 'The dragons are sleeping',
+    color: 'neon',
+    align: 'right',
+    offset: 160,
+    steps: [
+      '@Hal, @The Gentlemonke and @zeyfromdiscord take over the lead of the project',
+      'Community building, hiring a team of terrific mods',
+      'Updated Roadmap is created'
+    ]
+  },
+  {
+    title: 'The awakening',
+    color: 'light-gold',
+    align: 'left',
+    offset: 410,
+    steps: [
+      '$XIN Token is created',
+      'First DAO investment - $SHDW',
+      'Second DAO investment - $IN',
+      'XinDragons.io launched',
+    ]
+  },
+
+  {
+    title: 'The babies',
+    color: 'blue',
+    align: 'right',
+    offset: 490,
+    steps: [
+      'Baby XIN Dragons minting and publishing on ME',
+      'Holders of 3 Xin Dragons will be entitled to a FREE baby',
+      '**50%** of all royalties from gen 2 secondary sales will be paid to gen 1 holders'
+    ]
+  },
+  {
+    title: 'XinDAO Investment Fund',
+    color: 'purple',
+    align: 'left',
+    offset: 720,
+    steps: [
+      '50% of gen2 mint proceeds set aside for XinDAO',
+      'Investments voted on by XinDAO',
+      'Profit taking amount/frequency voted on by XinDAO',
+      'Profits shared with all DAO members'
+    ]
+  }
 ]
+
+const fonts = [
+  'Vermin-Vibes-1989',
+  'TradeWinds',
+  'Roboto-Bold',
+  'Roboto-Medium',
+  'Roboto-Regular'
+];
 
 export default function Home() {
   return (
@@ -80,10 +150,14 @@ export default function Home() {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-        <link rel="preload" href="Vermin-Vibes-1989.woff" as="font" crossOrigin="" type="font/woff" />
-        <link rel="preload" href="Vermin-Vibes-1989.woff2" as="font" crossOrigin="" type="font/woff2" />
-        <link rel="preload" href="TradeWinds.woff" as="font" crossOrigin="" type="font/woff" />
-        <link rel="preload" href="TradeWinds.woff2" as="font" crossOrigin="" type="font/woff2" />
+        {
+          fonts.map((font, index) => (
+            <Fragment key={index}>
+              <link rel="preload" href={`${font}.woff`} as="font" crossOrigin="" type="font/woff" />
+              <link rel="preload" href={`${font}.woff2`} as="font" crossOrigin="" type="font/woff2" />
+            </Fragment>
+          ))
+        }
       </Head>
 
       <main className={styles.main}>
@@ -139,7 +213,6 @@ export default function Home() {
 
           <section className={classnames(styles.section, styles.dragons)}>
             <h2 id="dragons" className={styles.heading}>Dragons</h2>
-            <p>Different types of dragons representing different things</p>
 
             <div className={styles.grid}>
               {
@@ -157,38 +230,65 @@ export default function Home() {
       </main>
 
       <section className={classnames(styles.section, styles.roadmap)}>
+        <h2 id="roadmap" className={styles.heading}>Roadmap</h2>
+
         <div className={styles['roadmap-inner']}>
-          <h2 id="roadmap" className={styles.heading}>Roadmap</h2>
-          <ol>
-            <li>Mint of 887 Xin Dragons</li>
-            <li>List on secondary marketplace</li>
-            <li>Setup holder verification</li>
-            <li>Create DAO</li>
-            <li>$XIN token creation</li>
-            <li>Release of Baby Xin Dragons</li>
-          </ol>
+          {
+            phases.map((phase, index) => (
+              <div className={classnames(styles.phase, styles[phase.align])} style={{ top: `${phase.offset}px` }}>
+                <h3 className={classnames(styles.heading, styles[phase.color])}>{`Phase ${index + 1} - ${phase.title}`}</h3>
+                <div className={styles['phase-inner']}>
+                  {
+                    Array.isArray(phase.steps)
+                      ? (
+                        <ul>
+                          {
+                            phase.steps.map((step, index) => <li key={index}>{step}</li>)
+                          }
+                        </ul>
+                      )
+                      : <p>{phase.steps}</p>
+                  }
+                </div>
+              </div>
+            ))
+          }
         </div>
       </section>
 
       <div className={styles['dark-bg']}>
         <section className={styles.section}>
           <div className={styles.content}>
-            <h2 id="babies" className={styles.heading}>Xin Dragon Babies</h2>
+            <h2 id="babies" className={classnames(styles.heading, styles['babies-header'])}>Xin Dragon Babies</h2>
 
             <div className={classnames(styles.flex, styles.narrow)}>
               <img src="/baby.png" alt="Xin Dragon Baby" width={145} height={143} />
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo eros quis quam dapibus, vel finibus augue vehicula. Mauris semper neque ac lacus tincidunt auctor. Quisque nec arcu vel orci volutpat condimentum. Vivamus pellentesque diam non lectus laoreet, vitae congue quam fringilla. Fusce accumsan elit at metus lobortis, eu ullamcorper felis sagittis. Donec accumsan dui sed ornare luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+              <ul className={styles['align-left']}>
+                <li>Xin Dragon Babies will be cute remastered descendants of their more ferocious parents</li>
+                <li>Striking and instantly recognizable PFPs, with their own rarity and traits</li>
+                <li>Holders of 3 dragons will be able to mint a FREE baby</li>
+                <li>Delisted dragons will be airdropped daily $XIN tokens</li>
+                <li>After the airdrop period, all holders of 3 dragons will have accumulated enought $XIN to mint a free baby</li>
+                <li>WEN MINT? - TBD</li>
+              </ul>
             </div>
           </div>
         </section>
 
         <section className={styles.section}>
           <div className={styles.content}>
-            <h2 id="token" className={styles.heading}>$XIN Token</h2>
+            <h2 id="token" className={classnames(styles.heading, styles['token-header'])}>$XIN Token</h2>
 
             <div className={classnames(styles.flex, styles.narrow)}>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo eros quis quam dapibus, vel finibus augue vehicula. Mauris semper neque ac lacus tincidunt auctor. Quisque nec arcu vel orci volutpat condimentum. Vivamus pellentesque diam non lectus laoreet, vitae congue quam fringilla. Fusce accumsan elit at metus lobortis, eu ullamcorper felis sagittis. Donec accumsan dui sed ornare luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+              <ul className={styles['align-right']}>
+                <li>$XIN token has already been minted</li>
+                <li>Supply is 10,000,000</li>
+                <li>$XIN will not be listed on DEX (for now)</li>
+                <li>$XIN will be be used to power the Xin ecosystem</li>
+                <li>First use will be for minting a free baby</li>
+                <li>Other uses will be announced in the near future...</li>
+              </ul>
               <img src="/xin-token-lg.png" alt="XIN Token" width={216} height={216} />
             </div>
           </div>

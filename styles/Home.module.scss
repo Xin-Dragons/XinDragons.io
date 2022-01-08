@@ -1,17 +1,25 @@
 $yellow: #F3DB9B;
 $chromatic: #04A41F;
 $gold: #BD780D;
-$neon: #CC3A60;
+$neon: #E44A8D;
 $sea: #509E6F;
 $gargoyle-purple: #734678;
-$chinese: #FFFD5D;
-$crystal: #B4C3F7;
-$swamp: #B0E231;
+$chinese: #978851;
+$crystal: #51629C;
+$swamp: #2AA80D;
 $gargoyle: #988891;
-$xin: #E9B65F;
+$xin: #BC3227;
 $green-2: #05921E;
 $pink: #BF76B3;
 $dark-grey: #121617;
+$dark-brown: #504323;
+$light-grey: #CDCED6;
+
+$grey-green: #91CF9C;
+$light-gold: #DEB26E;
+$blue: #55ADFF;
+$dark-blue: #3036E7;
+$purple: #BB7CCA;
 
 $font-color: #D1BFB3;
 
@@ -22,18 +30,6 @@ $font-color: #D1BFB3;
     background-color: $color;
   }
 }
-
-.chromatic { color: $chromatic; }
-.gold { color: $gold; }
-.neon { color: $neon; }
-.sea { color: $sea; }
-.green-2 { color: $green-2; }
-.gargoyle-purple { color: $gargoyle-purple; }
-.chinese { color: $chinese; }
-.crystal { color: $crystal; }
-.swamp { color: $swamp; }
-.gargoyle { color: $gargoyle; }
-.xin { color: $xin; }
 
 .container {
   background-color: black;
@@ -75,7 +71,7 @@ $font-color: #D1BFB3;
 
   margin: 0 auto;
 
-  max-width: 960px;
+  max-width: 975px;
 }
 
 .header {
@@ -105,7 +101,9 @@ $font-color: #D1BFB3;
 
 @keyframes showbebe {
   0% { right: -161px; }
-  25% { right: 0; }
+  10% { right: 0; }
+  50% { right: 0; }
+  75% { right: 0; }
   100% { right: -161px; }
 }
 
@@ -124,6 +122,10 @@ $font-color: #D1BFB3;
   padding: 0 2em;
 
   p {
+    color: $font-color;
+  }
+
+  ul {
     color: $font-color;
   }
 }
@@ -162,19 +164,67 @@ $font-color: #D1BFB3;
     right: 0;
     height: 100%;
     background-image: url('../public/roadmap-bg.png');
-    mask-image: linear-gradient(transparent, rgba(255, 255, 255, 1.0) 20%);
+    mask-image: linear-gradient(transparent 0%, black 20%, transparent 90%);
     background-size: contain;
     background-repeat: no-repeat;
   }
 }
 
+.phase {
+  position: absolute;
+  max-width: 471px;
+  color: $light-grey;
+  &.left {
+    left: 0;
+  }
+
+  .heading {
+    font-family: 'Vermin Vibes 1989', sans-serif;
+    font-size: 1.6em;
+    margin-bottom: 10px;
+  }
+
+  &.right {
+    right: 0;
+  }
+  .phase-inner {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 5px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    height: 142px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      color: $light-grey;
+      font-weight: 500;
+    }
+
+    ul {
+      list-style-type: '»';
+      text-align: left;
+      padding: 0;
+      max-width: 90%;
+      font-weight: 500;
+
+      li {
+        padding-left: 1em;
+      }
+    }
+  }
+}
+
 .roadmap-inner {
   margin: 0 auto;
-  max-width: 960px;
-  background-image: url('../public/roadmap-arrow.svg');
+  max-width: 1150px;
+  background-image: url('../public/roadmap-arrow-new.png');
+  // mask-image: linear-gradient(transparent 0%, black 20%);
+  height: 1150px;
   background-size: auto;
   background-repeat: no-repeat;
-  background-position: center 20px;
+  background-position: center top;
   z-index: 10;
   position: relative;
 
@@ -243,6 +293,22 @@ $font-color: #D1BFB3;
   font-weight: normal;
 }
 
+.chromatic { color: $chromatic; }
+.gold { color: $gold; }
+.neon { color: $neon; }
+.sea { color: $sea; }
+.green-2 { color: $green-2; }
+.gargoyle-purple { color: $gargoyle-purple; }
+.chinese { color: $chinese; }
+.crystal { color: $crystal; }
+.swamp { color: $swamp; }
+.gargoyle { color: $gargoyle; }
+.xin { color: $xin; }
+.grey-green { color: $grey-green; }
+.light-gold { color: $light-gold; }
+.blue { color: $blue; }
+.purple { color: $purple; }
+
 .footer {
   margin-top: 5em;
   display: flex;
@@ -289,33 +355,98 @@ $font-color: #D1BFB3;
 }
 
 .card {
-  margin: 0.5rem;
-  padding: 0;
+  margin: 5px;
+  padding: 10px;
   text-align: left;
-  color: inherit;
   text-decoration: none;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  width: 165px;
+  width: 185px;
+  height: 268px;
   text-align: center;
   vertical-align: top;
+  background-image: url('../public/card.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 
   h3 {
     font-family: "Vermin Vibes 1989", sans-serif;
+    font-size: 20px;
+    line-height: 17.5px;
+    margin-top: 10px;
+    margin-bottom: 0px;
   }
 
   p {
-    color: white;
+    color: $dark-brown;
+    margin-top: 0;
+    font-size: 11px;
   }
-}
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
 }
 
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+ul.align-right {
+  text-align: right;
+  list-style-type: none;
+  li {
+    &:after {
+      content: '»';
+      margin-left: 1em;
+    }
+  }
+
+}
+
+ul.align-left {
+  text-align: left;
+  list-style-type: '»';
+  li {
+    padding-left: 1em;
+  }
+}
+
+.babies-header {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.token-header {
+  margin-top: 4em;
+}
+
+@media (max-width: 730px) {
+  ul.align-right {
+    text-align: left;
+    list-style-type: '»';
+    li {
+      padding-left: 1em;
+      &:after {
+        content: '';
+      }
+    }
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1075px) {
+  .roadmap-inner {
+    background-image: url('../public/roadmap-arrow-small.png');
+    background-position: center 100px;
+    height: 1250px;
+  }
+}
+
+@media (max-width: 1020px) {
+  .phase {
+    position: static;
+    margin: 0 auto 50px auto;
+  }
 }
 
 @media (max-width: 1000px) {
