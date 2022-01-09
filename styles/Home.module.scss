@@ -417,6 +417,20 @@ ul.align-left {
   margin-top: 4em;
 }
 
+.team {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .team-member {
+    margin: 0 2em;
+    img {
+      border-radius: 100%;
+    }
+  }
+}
+
 @media (max-width: 730px) {
   ul.align-right {
     text-align: left;

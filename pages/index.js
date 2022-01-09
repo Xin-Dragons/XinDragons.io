@@ -86,8 +86,8 @@ const phases = [
     align: 'right',
     offset: 160,
     steps: [
-      '@Hal, @The Gentlemonke and @zeyfromdiscord take over the lead of the project',
-      'Community building, hiring a team of terrific mods',
+      '@Hal and @The Gentlemonke take over the lead of the project (WEN DOXX??)',
+      'Community building, hiring a team of terrific Mods, Dragon Council and Elite Alpha Team',
       'Updated Roadmap is created'
     ]
   },
@@ -112,7 +112,8 @@ const phases = [
     steps: [
       'Baby XIN Dragons minting and publishing on ME',
       'Holders of 3 Xin Dragons will be entitled to a FREE baby',
-      '**50%** of all royalties from gen 2 secondary sales will be paid to gen 1 holders'
+      '**50%** of all royalties from gen 2 secondary sales will be paid to gen 1 holders',
+      'Further $XIN Utility to come after babies...'
     ]
   },
   {
@@ -168,9 +169,11 @@ export default function Home() {
                 <li>
                   <Link href="/"><a>Home</a></Link>
                 </li>
-                <li>
-                  <Link href="#lore"><a>Lore</a></Link>
-                </li>
+                {
+                  // <li>
+                  //   <Link href="#lore"><a>Lore</a></Link>
+                  // </li>
+                }
                 <li>
                   <Link href="#roadmap"><a>Roadmap</a></Link>
                 </li>
@@ -179,6 +182,9 @@ export default function Home() {
                 </li>
                 <li>
                   <Link href="#token"><a>Token</a></Link>
+                </li>
+                <li>
+                  <Link href="#team"><a>Team</a></Link>
                 </li>
               </ul>
             </nav>
@@ -204,12 +210,14 @@ export default function Home() {
             <Image src="/logo.png" alt="Xin Dragons" width={409} height={353} />
           </h1>
 
-          <section className={styles.section}>
-            <h2 id="lore" className={styles.heading}>Lore</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo eros quis quam dapibus, vel finibus augue vehicula. Mauris semper neque ac lacus tincidunt auctor. Quisque nec arcu vel orci volutpat condimentum. Vivamus pellentesque diam non lectus laoreet, vitae congue quam fringilla. Fusce accumsan elit at metus lobortis, eu ullamcorper felis sagittis. Donec accumsan dui sed ornare luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec porta ex eu pretium semper. Etiam at sapien massa. Integer fringilla iaculis orci, in blandit neque dapibus nec. Sed facilisis massa orci, aliquet bibendum magna dictum tristique.</p>
-
-            <p>Ut vitae venenatis sapien, sit amet lacinia ex. Aenean finibus nulla quis ex tincidunt bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla elementum, ante ut pellentesque ultricies, purus est lobortis enim, eget tempus justo dui nec mauris. Proin mollis nisl vitae tellus feugiat fringilla.</p>
-          </section>
+          {
+            // <section className={styles.section}>
+            //   <h2 id="lore" className={styles.heading}>Lore</h2>
+            //   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo eros quis quam dapibus, vel finibus augue vehicula. Mauris semper neque ac lacus tincidunt auctor. Quisque nec arcu vel orci volutpat condimentum. Vivamus pellentesque diam non lectus laoreet, vitae congue quam fringilla. Fusce accumsan elit at metus lobortis, eu ullamcorper felis sagittis. Donec accumsan dui sed ornare luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec porta ex eu pretium semper. Etiam at sapien massa. Integer fringilla iaculis orci, in blandit neque dapibus nec. Sed facilisis massa orci, aliquet bibendum magna dictum tristique.</p>
+            //
+            //   <p>Ut vitae venenatis sapien, sit amet lacinia ex. Aenean finibus nulla quis ex tincidunt bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla elementum, ante ut pellentesque ultricies, purus est lobortis enim, eget tempus justo dui nec mauris. Proin mollis nisl vitae tellus feugiat fringilla.</p>
+            // </section>
+          }
 
           <section className={classnames(styles.section, styles.dragons)}>
             <h2 id="dragons" className={styles.heading}>Dragons</h2>
@@ -290,6 +298,24 @@ export default function Home() {
                 <li>Other uses will be announced in the near future...</li>
               </ul>
               <img src="/xin-token-lg.png" alt="XIN Token" width={216} height={216} />
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.content}>
+            <h2 id="team" className={classnames(styles.heading, styles['token-header'])}>Team</h2>
+
+            <div className={styles.team}>
+              <div className={styles['team-member']}>
+                <Image src="/gentlemonke.png" height={150} width={150} />
+                <p>The Gentlemonke<br />Development Lead</p>
+              </div>
+
+              <div className={styles['team-member']}>
+                <Image src="/hal.png" height={150} width={150} />
+                <p>Hal<br />Community Lead</p>
+              </div>
             </div>
           </div>
         </section>
