@@ -1,27 +1,4 @@
-$yellow: #F3DB9B;
-$chromatic: #04A41F;
-$gold: #BD780D;
-$neon: #E44A8D;
-$sea: #509E6F;
-$gargoyle-purple: #734678;
-$chinese: #978851;
-$crystal: #51629C;
-$swamp: #2AA80D;
-$gargoyle: #988891;
-$xin: #BC3227;
-$green-2: #05921E;
-$pink: #BF76B3;
-$dark-grey: #121617;
-$dark-brown: #504323;
-$light-grey: #CDCED6;
-
-$grey-green: #91CF9C;
-$light-gold: #DEB26E;
-$blue: #55ADFF;
-$dark-blue: #3036E7;
-$purple: #BB7CCA;
-
-$font-color: #D1BFB3;
+@import 'colors';
 
 @mixin colorLi($color) {
   color: $color;
@@ -31,95 +8,10 @@ $font-color: #D1BFB3;
   }
 }
 
-.container {
-  background-color: black;
-}
-
-.main {
-  &:before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background-image: url('../public/bg.png');
-    mask-image: linear-gradient(rgba(255, 255, 255, 1.0), transparent);
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  min-height: 100vh;
-  padding: 2rem 0 4rem 0;
-
-}
-
-.content {
-  z-index: 100;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  margin: 0 auto;
-
-  max-width: 975px;
-}
-
-.header {
-  font-family: "Vermin Vibes 1989", sans-serif;
-  font-size: 2em;
-
-  nav {
-    ul {
-      list-style-type: none;
-
-      li {
-        display: inline-block;
-        margin-right: 1em;
-      }
-    }
-  }
-}
-
-.social {
-  position: absolute;
-  right: 100px;
-  top: 65px;
-  img {
-    margin-left: 0.5em;
-  }
-}
-
-@keyframes showbebe {
-  0% { right: -161px; }
-  10% { right: 0; }
-  50% { right: 0; }
-  75% { right: 0; }
-  100% { right: -161px; }
-}
-
-.baby {
-  position: fixed;
-  right: -161px;
-  top: 100px;
-  animation: showbebe 7s infinite;
-  z-index: 10000;
-}
-
 .section {
   text-align: center;
-  padding-top: 5rem;
+  padding: 2rem 2rem;
   position: relative;
-  padding: 0 2em;
 
   p {
     color: $font-color;
@@ -127,6 +19,13 @@ $font-color: #D1BFB3;
 
   ul {
     color: $font-color;
+  }
+
+  .section-inner {
+
+    margin: 0 auto;
+
+    max-width: 975px;
   }
 }
 
@@ -142,6 +41,7 @@ $font-color: #D1BFB3;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 
   > img {
     margin: 1em;
@@ -149,7 +49,7 @@ $font-color: #D1BFB3;
 }
 
 .narrow {
-  max-width: 670px;
+  max-width: 670px !important;
 }
 
 .roadmap {
@@ -254,9 +154,9 @@ $font-color: #D1BFB3;
       }
 
       &:nth-child(1) { @include colorLi($green-2); }
-      &:nth-child(2) { @include colorLi($gold); }
-      &:nth-child(3) { @include colorLi($neon); }
-      &:nth-child(4) { @include colorLi($sea); }
+      &:nth-child(2) { @include colorLi($crystal-gold); }
+      &:nth-child(3) { @include colorLi($chinese-neon); }
+      &:nth-child(4) { @include colorLi($deep-sea); }
       &:nth-child(5) {
         @include colorLi($crystal);
         margin-top: -1.2em;
@@ -294,9 +194,9 @@ $font-color: #D1BFB3;
 }
 
 .chromatic { color: $chromatic; }
-.gold { color: $gold; }
-.neon { color: $neon; }
-.sea { color: $sea; }
+.crystal-gold { color: $crystal-gold; }
+.chinese-neon { color: $chinese-neon; }
+.deep-sea { color: $deep-sea; }
 .green-2 { color: $green-2; }
 .gargoyle-purple { color: $gargoyle-purple; }
 .chinese { color: $chinese; }
@@ -308,43 +208,6 @@ $font-color: #D1BFB3;
 .light-gold { color: $light-gold; }
 .blue { color: $blue; }
 .purple { color: $purple; }
-
-.footer {
-  margin-top: 5em;
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  justify-content: center;
-  align-items: center;
-  color: $font-color;
-  flex-direction: column;
-}
-
-.footer-socials a {
-  margin: 0.25em;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
 
 .grid {
   display: flex;
@@ -448,6 +311,127 @@ ul.align-left {
   }
 }
 
+.wallet-card {
+  cursor: pointer;
+  position: relative;
+
+  img {
+    opacity: 80%;
+  }
+
+  &:hover {
+    filter: brightness(80%);
+    transition: all 0.5s ease;
+  }
+
+  p {
+    font-size: .8em;
+    margin-bottom: 7px;
+  }
+
+}
+
+.button {
+  background-color: $phantom-blue;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  font-family: 'Vermin Vibes 1989', sans-serif;
+  font-size: 1.5em;
+  margin: 2em 0;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-filter: brightness(80%);
+    transition: all 0.5s ease;
+  }
+
+  span {
+    display: inline-block;
+    line-height: 34px;
+    vertical-align: middle;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+
+  .modal-inner {
+    background-image: url('/card.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 5px;
+    width: 30%;
+    height: 100%;
+    margin: 7% auto;
+    padding: 20px;
+    text-align: center;
+    color: $dark-grey;
+
+    img {
+      display: block;
+      opacity: 80%;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .heading {
+      font-family: "Vermin Vibes 1989", sans-serif;
+      font-size: 1.7em;
+      margin-top: 0.5em;
+    }
+
+    dl {
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+
+      dt {
+        font-weight: bold;
+        &:after {
+          content: ':'
+        }
+      }
+
+      dt, dd {
+        float: left;
+        width: 50%;
+        padding: 0;
+        margin: 0
+      }
+    }
+  }
+}
+
+.moonrank {
+  font-family: IBM Plex Sans,sans-serif;
+  border: 0 solid #e5e7eb;
+  border-radius: .25rem;
+  background-color: #291560;
+  padding: 3px 5px;
+
+  display: inline-block;
+
+  .moonrank {
+    color: rgb(247, 220, 90);
+  }
+
+  &:hover {
+    .rank {
+      color: rgb(247, 220, 90);
+    }
+  }
+}
+
 @media (max-width: 1075px) {
   .roadmap-inner {
     background-image: url('../public/roadmap-arrow-small.png');
@@ -467,9 +451,18 @@ ul.align-left {
 
 @media (max-width: 1000px) {
   .social {
-    position: static;
+    position: static !important;
     display: flex;
     align-items: center;
     justify-content:center;
+  }
+}
+
+@media (max-width: 1000px) {
+  .modal-inner {
+    width: 100% !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-size: cover;
   }
 }

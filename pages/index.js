@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 import classnames from 'classnames';
 import styles from '../styles/Home.module.scss'
 
@@ -130,112 +129,26 @@ const phases = [
   }
 ]
 
-const fonts = [
-  'Vermin-Vibes-1989',
-  'TradeWinds',
-  'Roboto-Bold',
-  'Roboto-Medium',
-  'Roboto-Regular'
-];
-
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Xin Dragons</title>
-        <meta name="description" content="Xin Dragons" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
-        {
-          fonts.map((font, index) => (
-            <Fragment key={index}>
-              <link rel="preload" href={`${font}.woff`} as="font" crossOrigin="" type="font/woff" />
-              <link rel="preload" href={`${font}.woff2`} as="font" crossOrigin="" type="font/woff2" />
-            </Fragment>
-          ))
-        }
-      </Head>
+    <>
+      <section className={classnames(styles.section, styles.dragons)}>
+        <div className={styles['section-inner']}>
+          <h2 id="dragons" className={styles.heading}>Dragons</h2>
 
-      <main className={styles.main}>
-        <div className={styles.content}>
-          <header className={styles.header}>
-            <nav>
-              <ul>
-                <li>
-                  <Link href="/"><a>Home</a></Link>
-                </li>
-                {
-                  // <li>
-                  //   <Link href="#lore"><a>Lore</a></Link>
-                  // </li>
-                }
-                <li>
-                  <Link href="#roadmap"><a>Roadmap</a></Link>
-                </li>
-                <li>
-                  <Link href="#babies"><a>Babies</a></Link>
-                </li>
-                <li>
-                  <Link href="#token"><a>Token</a></Link>
-                </li>
-                <li>
-                  <Link href="#team"><a>Team</a></Link>
-                </li>
-              </ul>
-            </nav>
-            <div className={styles.social}>
-              <Link href="https://twitter.com/XinDragons">
-                <a>
-                  <img src="/twitter.svg" alt="Xin Dragons Twitter" width={26} height={21} />
-                </a>
-              </Link>
-              <Link href="https://twitter.com/XinDragons">
-                <a>
-                  <img src="/discord.svg" alt="Xin Dragons Discord" width={26} height={20} />
-                </a>
-              </Link>
-            </div>
-          </header>
-
-          <div className={styles.baby}>
-            <Image src="/bebe.png" alt="Xin Dragons Baby" width={161} height={280} />
+          <div className={styles.grid}>
+            {
+              cards.map((card, index) => (
+                <div key={index} className={styles.card}>
+                  <Image src={card.src} alt={card.title} width={165} height={165} />
+                  <h3 className={classnames(styles.heading, styles[card.color])}>{card.title}</h3>
+                  <p>{card.text}</p>
+                </div>
+              ))
+            }
           </div>
-
-          <h1 className={styles.title}>
-            <Image src="/logo.png" alt="Xin Dragons" width={409} height={353} />
-          </h1>
-
-          {
-            // <section className={styles.section}>
-            //   <h2 id="lore" className={styles.heading}>Lore</h2>
-            //   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque commodo eros quis quam dapibus, vel finibus augue vehicula. Mauris semper neque ac lacus tincidunt auctor. Quisque nec arcu vel orci volutpat condimentum. Vivamus pellentesque diam non lectus laoreet, vitae congue quam fringilla. Fusce accumsan elit at metus lobortis, eu ullamcorper felis sagittis. Donec accumsan dui sed ornare luctus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec porta ex eu pretium semper. Etiam at sapien massa. Integer fringilla iaculis orci, in blandit neque dapibus nec. Sed facilisis massa orci, aliquet bibendum magna dictum tristique.</p>
-            //
-            //   <p>Ut vitae venenatis sapien, sit amet lacinia ex. Aenean finibus nulla quis ex tincidunt bibendum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla elementum, ante ut pellentesque ultricies, purus est lobortis enim, eget tempus justo dui nec mauris. Proin mollis nisl vitae tellus feugiat fringilla.</p>
-            // </section>
-          }
-
-          <section className={classnames(styles.section, styles.dragons)}>
-            <h2 id="dragons" className={styles.heading}>Dragons</h2>
-
-            <div className={styles.grid}>
-              {
-                cards.map((card, index) => (
-                  <div key={index} className={styles.card}>
-                    <Image src={card.src} alt={card.title} width={165} height={165} />
-                    <h3 className={classnames(styles.heading, styles[card.color])}>{card.title}</h3>
-                    <p>{card.text}</p>
-                  </div>
-                ))
-              }
-            </div>
-          </section>
         </div>
-      </main>
+      </section>
 
       <section className={classnames(styles.section, styles.roadmap)}>
         <h2 id="roadmap" className={styles.heading}>Roadmap</h2>
@@ -265,45 +178,46 @@ export default function Home() {
       </section>
 
       <div className={styles['dark-bg']}>
-        <section className={styles.section}>
-          <div className={styles.content}>
-            <h2 id="babies" className={classnames(styles.heading, styles['babies-header'])}>Xin Dragon Babies</h2>
 
-            <div className={classnames(styles.flex, styles.narrow)}>
-              <img src="/baby.png" alt="Xin Dragon Baby" width={145} height={143} />
+        <section className={classnames(styles.section)}>
+          <div className={styles['section-inner']}>
+          <h2 id="babies" className={classnames(styles.heading, styles['babies-header'])}>Xin Dragon Babies</h2>
 
-              <ul className={styles['align-left']}>
-                <li>Xin Dragon Babies will be cute remastered descendants of their more ferocious parents</li>
-                <li>Striking and instantly recognizable PFPs, with their own rarity and traits</li>
-                <li>Holders of 3 dragons will be able to mint a FREE baby</li>
-                <li>Delisted dragons will be airdropped daily $XIN tokens</li>
-                <li>After the airdrop period, all holders of 3 dragons will have accumulated enought $XIN to mint a free baby</li>
-                <li>WEN MINT? - TBD</li>
-              </ul>
-            </div>
+          <div className={classnames(styles.flex, styles.narrow)}>
+            <img src="/baby.png" alt="Xin Dragon Baby" width={145} height={143} />
+
+            <ul className={styles['align-left']}>
+              <li>Xin Dragon Babies will be cute remastered descendants of their more ferocious parents</li>
+              <li>Striking and instantly recognizable PFPs, with their own rarity and traits</li>
+              <li>Holders of 3 dragons will be able to mint a FREE baby</li>
+              <li>Delisted dragons will be airdropped daily $XIN tokens</li>
+              <li>After the airdrop period, all holders of 3 dragons will have accumulated enought $XIN to mint a free baby</li>
+              <li>WEN MINT? - TBD</li>
+            </ul>
+          </div>
           </div>
         </section>
 
         <section className={styles.section}>
-          <div className={styles.content}>
-            <h2 id="token" className={classnames(styles.heading, styles['token-header'])}>$XIN Token</h2>
+          <div className={styles['section-inner']}>
+          <h2 id="token" className={classnames(styles.heading, styles['token-header'])}>$XIN Token</h2>
 
-            <div className={classnames(styles.flex, styles.narrow)}>
-              <ul className={styles['align-right']}>
-                <li>$XIN token has already been minted</li>
-                <li>Supply is 10,000,000</li>
-                <li>$XIN will not be listed on DEX (for now)</li>
-                <li>$XIN will be be used to power the Xin ecosystem</li>
-                <li>First use will be for minting a free baby</li>
-                <li>Other uses will be announced in the near future...</li>
-              </ul>
-              <img src="/xin-token-lg.png" alt="XIN Token" width={216} height={216} />
-            </div>
+          <div className={classnames(styles.flex, styles.narrow)}>
+            <ul className={styles['align-right']}>
+              <li>$XIN token has already been minted</li>
+              <li>Supply is 10,000,000</li>
+              <li>$XIN will not be listed on DEX (for now)</li>
+              <li>$XIN will be be used to power the Xin ecosystem</li>
+              <li>First use will be for minting a free baby</li>
+              <li>Other uses will be announced in the near future...</li>
+            </ul>
+            <img src="/xin-token-lg.png" alt="XIN Token" width={216} height={216} />
+          </div>
           </div>
         </section>
 
         <section className={styles.section}>
-          <div className={styles.content}>
+          <div className={styles['section-inner']}>
             <h2 id="team" className={classnames(styles.heading, styles['token-header'])}>Team</h2>
 
             <div className={styles.team}>
@@ -320,23 +234,7 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className={styles.footer}>
-          <div className={styles['footer-socials']}>
-            <Link href="https://twitter.com/XinDragons">
-              <a>
-                <img src="/twitter-2.svg" alt="Xin Dragons Twitter"/>
-              </a>
-            </Link>
-            <Link href="https://twitter.com/XinDragons">
-              <a>
-                <img src="/discord-2.svg" alt="Xin Dragons Discord"/>
-              </a>
-            </Link>
-          </div>
-          <p>{(new Date()).getFullYear()} Xin Dragons All rights reserved</p>
-        </footer>
-
       </div>
-    </div>
+    </>
   )
 }

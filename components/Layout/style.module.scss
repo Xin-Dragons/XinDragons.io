@@ -1,0 +1,101 @@
+@import 'colors';
+
+.container {
+  background-color: black;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  min-height: 100vh;
+  padding: 2rem 0 0 0;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: url('/bg.png');
+    mask-image: linear-gradient(rgba(255, 255, 255, 1.0), transparent);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+.header {
+  font-family: "Vermin Vibes 1989", sans-serif;
+  font-size: 2em;
+  z-index: 1;
+
+  nav {
+    ul {
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        margin-right: 1em;
+      }
+    }
+  }
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.main {
+  width: 100%;
+}
+
+.social {
+  position: absolute;
+  right: 100px;
+  top: 65px;
+  img {
+    margin-left: 0.5em;
+  }
+}
+
+@keyframes showbebe {
+  0% { right: -161px; }
+  10% { right: 0; }
+  50% { right: 0; }
+  75% { right: 0; }
+  100% { right: -161px; }
+}
+
+.baby {
+  position: fixed;
+  right: -161px;
+  top: 100px;
+  animation: showbebe 7s infinite;
+  z-index: 10000;
+}
+
+.footer {
+  background-color: $dark-grey;
+  width: 100%;
+  // margin-top: 5em;
+  display: flex;
+  flex: 1;
+  padding: 10rem 0 0 0;
+  justify-content: center;
+  align-items: center;
+  color: $font-color;
+  flex-direction: column;
+}
+
+.footer-socials a {
+  margin: 0.25em;
+}
