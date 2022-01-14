@@ -8,25 +8,25 @@ const cards = [
   {
     src: '/chromatic.png',
     title: 'Xin Chromatic',
-    color: 'chromatic',
+    color: 'xin-chromatic',
     text: 'It can change into different shapes, even human beings. It is said that it can control all the seas'
   },
   {
     src: '/gold.png',
     title: 'Crystal Gold',
-    color: 'gold',
+    color: 'crystal-gold',
     text: 'Protects hidden treasures or personal wealth.'
   },
   {
     src: '/neon.png',
     title: 'Chinese Neon',
-    color: 'neon',
+    color: 'chinese-neon',
     text: 'It is said that the coiling dragon can control time.'
   },
   {
     src: '/sea.png',
     title: 'Deep Sea',
-    color: 'sea',
+    color: 'deep-sea',
     text: 'Lives in the seas, rivers, lakes, or underground. It can control the flow of rivers or streams.'
   },
   {
