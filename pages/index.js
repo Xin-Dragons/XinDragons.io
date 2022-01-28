@@ -110,7 +110,7 @@ const phases = [
     offset: 490,
     steps: [
       'Baby XIN Dragons minting and publishing on ME',
-      'Holders of 3 Xin Dragons will be entitled to a FREE baby',
+      // 'Holders of 3 Xin Dragons will be entitled to a FREE baby',
       '**50%** of all royalties from gen 2 secondary sales will be paid to gen 1 holders',
       'Further $XIN Utility to come after babies...'
     ]
