@@ -178,7 +178,7 @@ const phases = [
     title: 'Coming Soon',
     color: 'blue',
     align: 'right',
-    offset: 70,
+    offset: 30,
     steps: [
       // 'Up to 3 babies can be included in The Fusion',
     ]
