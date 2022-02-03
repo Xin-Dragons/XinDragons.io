@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import classnames from 'classnames';
 import styles from '../styles/Home.module.scss'
-import Accordion from 'react-bootstrap/Accordion'
 
 const cards = [
   {
@@ -123,18 +122,6 @@ const oldphases = [
     offset: 720,
     steps: [
       '50% of gen2 mint proceeds set aside for XinDAO',
-      'Investments voted on by XinDAO',
-      'Profit taking amount/frequency voted on by XinDAO',
-      'Profits shared with all DAO members'
-    ]
-  },
-  {
-    title: 'Staking for $XIN',
-    color: 'grey-green',
-    align: 'right',
-    offset: 820,
-    steps: [
-      'Babies will pay their parents $XIN when located in the same wallet',
       'Investments voted on by XinDAO',
       'Profit taking amount/frequency voted on by XinDAO',
       'Profits shared with all DAO members'
