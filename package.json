@@ -11,14 +11,29 @@
     "@nfteyez/sol-rayz": "^0.8.2",
     "@solana/web3.js": "^1.31.0",
     "axios": "^0.24.0",
+    "bootstrap": "^5.1.3",
     "classnames": "^2.3.1",
-    "next": "12.0.7",
+    "next": "^12.0.9",
     "react": "17.0.2",
+    "react-bootstrap": "^2.1.1",
     "react-dom": "17.0.2",
     "sass": "^1.45.2"
   },
   "devDependencies": {
     "eslint": "8.5.0",
     "eslint-config-next": "12.0.7"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "version": "1.0.0",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xin-Dragons/XinDragons.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xin-Dragons/XinDragons.io/issues"
+  },
+  "homepage": "https://github.com/Xin-Dragons/XinDragons.io#readme"
 }

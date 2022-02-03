@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import classnames from 'classnames';
 import styles from '../styles/Home.module.scss'
+import Accordion from 'react-bootstrap/Accordion'
 
 const cards = [
   {
@@ -67,7 +68,7 @@ const cards = [
   }
 ];
 
-const phases = [
+const oldphases = [
   {
     title: 'Starting up',
     color: 'grey-green',
@@ -126,8 +127,77 @@ const phases = [
       'Profit taking amount/frequency voted on by XinDAO',
       'Profits shared with all DAO members'
     ]
+  },
+  {
+    title: 'Staking for $XIN',
+    color: 'grey-green',
+    align: 'right',
+    offset: 820,
+    steps: [
+      'Babies will pay their parents $XIN when located in the same wallet',
+      'Investments voted on by XinDAO',
+      'Profit taking amount/frequency voted on by XinDAO',
+      'Profits shared with all DAO members'
+    ]
   }
 ]
+
+const phases = [
+  {
+    title: 'Staking for $XIN',
+    color: 'grey-green',
+    align: 'teal',
+    offset: 30,
+    steps: [
+      'Babies will pay their parents $XIN when located in the same wallet (Maximum 3 babies per parent)',
+      'Rarer Gen1 AND Gen2 will pay more $XIN',
+      'Special bonus for matching special skins (TBC)'
+    ]
+  },
+  {
+    title: 'Dragon Balls',
+    color: 'purple',
+    align: 'right',
+    offset: 0,
+    steps: [
+      'Can only be bought from the $XIN vending machine',
+      'Can be used to evolve a Gen1 dragon into a Super Dragon',
+      'Special bonus for collecting all Dragon Balls (1-7)'
+    ]
+  },
+  {
+    title: 'Super Dragons',
+    color: 'light-gold',
+    align: 'left',
+    offset: 0,
+    steps: [
+      'A Gen1 Dragon is evolved with remastered artwork',
+      'Super Dragon is forever bound to the wallet from which they were evolved',
+      'Super Dragons receive 100% of royalties from all future sales',
+    ]
+  },
+  {
+    title: 'The Fusion',
+    color: 'teal',
+    align: 'right',
+    offset: 0,
+    steps: [
+      'Up to 3 babies can be included in The Fusion',
+      '100% of all future royalties from these babies paid to Fused wallet',
+      'Babies can only be refused if used in another evolution'
+    ]
+  },
+  {
+    title: 'Coming Soon',
+    color: 'blue',
+    align: 'right',
+    offset: 70,
+    steps: [
+      // 'Up to 3 babies can be included in The Fusion',
+    ]
+  },
+]
+
 
 export default function Home() {
   return (
@@ -151,26 +221,27 @@ export default function Home() {
       </section>
 
       <section className={classnames(styles.section, styles.roadmap)}>
-        <h2 id="roadmap" className={styles.heading}>Roadmap</h2>
-
+        <h2 id="roadmap" className={styles.heading}>The Evolved Roadmap</h2>
+        
         <div className={styles['roadmap-inner']}>
           {
             phases.map((phase, index) => (
               <div key={index} className={classnames(styles.phase, styles[phase.align])} style={{ top: `${phase.offset}px` }}>
-                <h3 className={classnames(styles.heading, styles[phase.color])}>{`Phase ${index + 1} - ${phase.title}`}</h3>
-                <div className={styles['phase-inner']}>
-                  {
-                    Array.isArray(phase.steps)
-                      ? (
-                        <ul>
-                          {
-                            phase.steps.map((step, index) => <li key={index}>{step}</li>)
-                          }
-                        </ul>
-                      )
-                      : <p>{phase.steps}</p>
-                  }
-                </div>
+
+                  <h3 className={classnames(styles.heading, styles[phase.color])}>{`Phase ${index + 1} - ${phase.title}`}</h3>
+                  <div className={styles['phase-inner']}>
+                    {
+                      Array.isArray(phase.steps)
+                        ? (
+                          <ul>
+                            {
+                              phase.steps.map((step, index) => <li key={index}>{step}</li>)
+                            }
+                          </ul>
+                        )
+                        : <p>{phase.steps}</p>
+                    }
+                  </div>
               </div>
             ))
           }
@@ -189,9 +260,7 @@ export default function Home() {
             <ul className={styles['align-left']}>
               <li>Xin Dragon Babies will be cute remastered descendants of their more ferocious parents</li>
               <li>Striking and instantly recognizable PFPs, with their own rarity and traits</li>
-              <li>Holders of 3 dragons will be able to mint a FREE baby</li>
-              <li>Delisted dragons will be airdropped daily $XIN tokens</li>
-              <li>After the airdrop period, all holders of 3 dragons will have accumulated enought $XIN to mint a free baby</li>
+              {/* <li>Holders of 3 dragons will be able to mint a FREE baby</li> */}
               <li>WEN MINT? - TBD</li>
             </ul>
           </div>
