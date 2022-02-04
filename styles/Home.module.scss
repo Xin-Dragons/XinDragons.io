@@ -431,6 +431,31 @@ ul.align-left {
   }
 }
 
+.walletButtons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    background: linear-gradient(83.39deg, #A88848 6.2%, #FCEEB2 36.17%, #DDB55B 73.65%, #FEEFB1 137.01%);
+    color: #7C5D1E;
+    font-size: 16px;
+  }
+
+  h4 {
+    background: linear-gradient(83.39deg, #A88848 6.2%, #FCEEB2 36.17%, #DDB55B 73.65%, #FEEFB1 137.01%);
+    color: #7C5D1E;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+  }
+}
+
 @media (max-width: 1075px) {
   .roadmap-inner {
     background-image: url('../public/roadmap-arrow-small.png');
