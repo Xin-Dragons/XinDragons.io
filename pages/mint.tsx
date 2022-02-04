@@ -26,7 +26,7 @@ const Home: NextPage = (props) => {
   async function updateTokenBalance() {
     if (wallet && wallet.publicKey) {
       const key = wallet.publicKey.toString();
-      const response = await axios.get(`http://localhost:3000/api/get-token-balance/${key}`);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/get-token-balance/${key}`);
 
       const { amount } = response.data;
 
