@@ -32,7 +32,6 @@ export default async function handler(req, res) {
   const solana = new web3.Connection(process.env.NEXT_PUBLIC_RPC_HOST);
 
   const accountPublicKey = new web3.PublicKey(publicKey);
-  console.log(process.env.NEXT_PUBLIC_TOKEN_ADDRESS)
   const mintAccount = new web3.PublicKey(process.env.NEXT_PUBLIC_TOKEN_ADDRESS);
 
   const filters = [

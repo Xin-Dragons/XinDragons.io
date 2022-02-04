@@ -44,7 +44,7 @@ export default function Layout({ children }) {
               <Link href="/"><a>Home</a></Link>
             </li>
             <li>
-              <Link href="/wallet"><a>Wallet</a></Link>
+              <Link href="/mint"><a>Mint</a></Link>
             </li>
             <li>
               <Link href="/#roadmap"><a>Roadmap</a></Link>

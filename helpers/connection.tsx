@@ -365,17 +365,6 @@ export async function sendSignedTransaction({
   timeout?: number;
 }): Promise<{ txid: string; slot: number }> {
 
-  // if first txn, sign that thang
-  if (i === 0 && isSwap) {
-    let transactionBuffer = signedTransaction.serializeMessage();
-    const response = await axios.post('http://localhost:3000/api/sign-transaction', { transactionBuffer: bs58.encode(transactionBuffer) });
-    const signature = new Uint8Array(bs58.decode(response.data.signature));
-
-    const fromWallet = new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET);
-
-    signedTransaction.addSignature(fromWallet, signature);
-  }
-
   const rawTransaction = signedTransaction.serialize();
   const startTime = getUnixTs();
   let slot = 0;

@@ -298,43 +298,6 @@ export const mintOneToken = async (
     ),
   ];
 
-  const mintPrice = parseInt(process.env.NEXT_PUBLIC_MINT_PRICE, 10);
-
-  if (tokenAmount < mintPrice) {
-    isSwap = true;
-    const xinTokenMint = new PublicKey(process.env.NEXT_PUBLIC_TOKEN_ADDRESS);
-
-    const fromWallet = new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET);
-
-    const myToken = new Token(
-      candyMachine.program.provider.connection,
-      xinTokenMint,
-      TOKEN_PROGRAM_ID,
-      payer
-    );
-
-    const fromTokenAccount = await myToken.getOrCreateAssociatedAccountInfo(fromWallet)
-    const toTokenAccount = await myToken.getOrCreateAssociatedAccountInfo(payer)
-
-    const tokensNeeded = mintPrice - tokenAmount;
-
-    instructions.unshift(...[
-      anchor.web3.SystemProgram.transfer({
-        fromPubkey: payer,
-        toPubkey: new PublicKey(process.env.NEXT_PUBLIC_MINT_PROCEEDS),
-        lamports: tokensNeeded * parseFloat(process.env.NEXT_PUBLIC_XIN_COST_IN_SOL) * LAMPORTS_PER_SOL,
-      }),
-      Token.createTransferInstruction(
-        TOKEN_PROGRAM_ID,
-        fromTokenAccount.address,
-        toTokenAccount.address,
-        payer,
-        [],
-        tokensNeeded * 1000000
-      )
-    ]);
-  }
-
   if (candyMachine.state.gatekeeper) {
     remainingAccounts.push({
       pubkey: (
