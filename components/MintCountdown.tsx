@@ -120,7 +120,6 @@ export const MintCountdown: React.FC<MintCountdownProps> = ({
   }: MintCountdownRender) => {
     hours += days * 24;
     if (completed) {
-      status = 'PAUSED';
       const inactive = status !== 'LIVE';
       return status
       ? (
