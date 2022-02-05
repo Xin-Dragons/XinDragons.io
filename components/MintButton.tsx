@@ -38,7 +38,6 @@ export const MintButton = ({
   return (
     <CTAButton
       disabled={
-        true ||
         candyMachine?.state.isSoldOut ||
         isMinting ||
         !candyMachine?.state.isActive
@@ -58,10 +57,7 @@ export const MintButton = ({
       }}
       variant="contained"
     >
-      {
-        //getMintButtonContent()
-      }
-      MINTING PAUSED
+      {getMintButtonContent()}
     </CTAButton>
   );
 };
