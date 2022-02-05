@@ -68,5 +68,5 @@ export const Header = ({ candyMachine }: HeaderProps) => {
 
 const getMintPrice = (candyMachine: CandyMachineAccount): string => {
   const price = process.env.NEXT_PUBLIC_MINT_PRICE;
-  return `${price} $XIN`;
+  return `0.69 SOL`;
 };
