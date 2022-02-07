@@ -59,7 +59,14 @@ export default function Swop() {
 
   function setMax(e) {
     e.preventDefault()
-    setTokens(tokenBalance);
+
+    const max = parseInt(process.env.NEXT_PUBLIC_MAX_TOKEN_SWAP, 10);
+
+    const val = tokenBalance > max
+      ? max
+      : tokenBalance
+
+    setTokens(val);
   }
 
   function onInputClick(e) {

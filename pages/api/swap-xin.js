@@ -23,6 +23,10 @@ export default async function handler(req, res) {
     return res.status(500).send({ message: 'Balance too low' });
   }
 
+  if (tokens > parseInt(process.env.NEXT_PUBLIC_MAX_TOKEN_SWAP)) {
+    return res.status(500).send({ message: 'Too much $XIN for one transaction' });
+  }
+
   const connection = new web3.Connection(process.env.NEXT_PUBLIC_RPC_HOST);
   const userWallet = new web3.PublicKey(publicKey);
 
