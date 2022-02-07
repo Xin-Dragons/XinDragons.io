@@ -36,6 +36,12 @@ export default function Swop() {
     }
   }, [wallet.publicKey, wallet.connected])
 
+  const swapActive = Boolean(process.env.NEXT_PUBLIC_SWAP_ACTIVE);
+
+  if (!swapActive) {
+    return <h2>SWAP OFFLINE</h2>
+  }
+
   async function updateTokenBalance() {
     if (wallet && wallet.publicKey) {
       const key = wallet.publicKey.toString();

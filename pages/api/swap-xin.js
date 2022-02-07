@@ -17,6 +17,12 @@ const fromWallet = web3.Keypair.fromSecretKey(
 export default async function handler(req, res) {
   const { publicKey, tokens } = req.body;
 
+  const swapActive = Boolean(process.env.NEXT_PUBLIC_SWAP_ACTIVE);
+
+  if (!swapActive) {
+    return res.status(500).send({ message: 'Swap not currently active' });
+  }
+
   const tokenBalance = await getTokenBalance(publicKey, process.env.NEXT_PUBLIC_TOKEN_ADDRESS);
 
   if (tokens > tokenBalance / 1000000) {
