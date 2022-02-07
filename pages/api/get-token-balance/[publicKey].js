@@ -1,6 +1,5 @@
 import getTokenBalance from '../../../lib/get-token-balance';
 
-
 const MULTIPLIER = 1000000;
 
 export default async function handler(req, res) {

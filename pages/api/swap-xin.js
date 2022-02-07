@@ -5,7 +5,6 @@ import bs58 from 'bs58';
 import nacl from 'tweetnacl';
 
 const xinTokenMint = new web3.PublicKey(process.env.NEXT_PUBLIC_TOKEN_ADDRESS);
-const treasuryWallet = new web3.PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET);
 
 const mintPrice = parseInt(process.env.NEXT_PUBLIC_MINT_PRICE, 10);
 
@@ -14,7 +13,6 @@ const fromWallet = web3.Keypair.fromSecretKey(
     JSON.parse(bs58.decode(process.env.XIN_WALLET).toString())
   )
 )
-
 
 export default async function handler(req, res) {
   const { publicKey, tokens } = req.body;
@@ -36,7 +34,7 @@ export default async function handler(req, res) {
   );
 
   const fromTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(userWallet)
-  const toTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(treasuryWallet)
+  const toTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(fromWallet.publicKey)
 
   const transaction = new web3.Transaction()
     .add(
@@ -51,7 +49,7 @@ export default async function handler(req, res) {
     )
     .add(
       web3.SystemProgram.transfer({
-        fromPubkey: treasuryWallet,
+        fromPubkey: fromWallet.publicKey,
         toPubkey: userWallet,
         lamports: tokens * parseFloat(process.env.NEXT_PUBLIC_XIN_COST_IN_SOL) * web3.LAMPORTS_PER_SOL,
       })
@@ -60,12 +58,9 @@ export default async function handler(req, res) {
   transaction.recentBlockhash = (await connection.getRecentBlockhash('singleGossip')).blockhash;
   transaction.setSigners(userWallet, fromWallet.publicKey);
 
-
   const signature = nacl.sign.detached(transaction.serializeMessage(), fromWallet.secretKey);
 
   transaction.addSignature(fromWallet.publicKey, signature);
-
-  console.log(transaction)
 
   res.status(200).json({ transaction });
 }

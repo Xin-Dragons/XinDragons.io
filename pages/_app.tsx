@@ -30,28 +30,11 @@ const theme = createTheme({
   },
 });
 
-const getCandyMachineId = (): anchor.web3.PublicKey | undefined => {
-  try {
-    const candyMachineId = new anchor.web3.PublicKey(
-      process.env.NEXT_PUBLIC_CANDY_MACHINE_ID!,
-    );
-
-    return candyMachineId;
-  } catch (e) {
-    console.log('Failed to construct CandyMachineId', e);
-    return undefined;
-  }
-};
-
-const candyMachineId = getCandyMachineId();
-const network = process.env.NEXT_PUBLIC_SOLANA_NETWORK as WalletAdapterNetwork;
-const rpcHost = process.env.NEXT_PUBLIC_SOLANA_RPC_HOST!;
+const network = process.env.NEXT_PUBLIC_NETWORK as WalletAdapterNetwork;
+const rpcHost = process.env.NEXT_PUBLIC_RPC_HOST!;
 const connection = new anchor.web3.Connection(rpcHost
   ? rpcHost
   : anchor.web3.clusterApiUrl('devnet'));
-
-const startDateSeed = parseInt(process.env.NEXT_PUBLIC_CANDY_START_DATE!, 10);
-const txTimeoutInMilliseconds = 30000;
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
@@ -84,10 +67,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
             <Layout>
               <Component
                 {...pageProps}
-                candyMachineId={candyMachineId}
                 connection={connection}
-                startDate={startDateSeed}
-                txTimeout={txTimeoutInMilliseconds}
                 rpcHost={rpcHost}
               />
             </Layout>

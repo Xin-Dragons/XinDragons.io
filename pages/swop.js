@@ -4,10 +4,18 @@ import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { useState, useEffect } from 'react';
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
-import { Container, Snackbar, Paper } from '@material-ui/core';
+import { Container, Snackbar, Paper, CircularProgress } from '@material-ui/core';
 import CTAButton from '../components/CTAButton';
+import toast from 'react-hot-toast';
 import axios from 'axios';
-import { Transaction, PublicKey, SystemProgram, LAMPORTS_PER_SOL } from '@solana/web3.js';
+import {
+  Transaction,
+  PublicKey,
+  SystemProgram,
+  LAMPORTS_PER_SOL,
+  Keypair,
+  sendAndConfirmRawTransaction
+} from '@solana/web3.js';
 import bs58 from 'bs58';
 import nacl from 'tweetnacl';
 
@@ -18,6 +26,7 @@ const xinTokenMint = new PublicKey(process.env.NEXT_PUBLIC_TOKEN_ADDRESS);
 export default function Swop() {
   const { connection } = useConnection();
   const wallet = useWallet();
+  const [loading, setLoading] = useState(false);
   const [tokenBalance, setTokenBalance] = useState(0);
   const [tokens, setTokens] = useState(0);
 
@@ -38,15 +47,11 @@ export default function Swop() {
     }
   }
 
-  useEffect(() => {
-    console.log({ tokens })
-  }, [tokens])
-
   function onChange(e) {
     let { value } = e.target;
 
     if (value) {
-      value = parseFloat(value);
+      value = parseInt(value, 10);
     }
 
     setTokens(value);
@@ -57,96 +62,61 @@ export default function Swop() {
     setTokens(tokenBalance);
   }
 
+  function onInputClick(e) {
+    e.target.setSelectionRange(0, e.target.value.length);
+  }
+
   async function swap() {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/swap-xin`, { tokens, publicKey: wallet.publicKey })
+    try {
+      setLoading(true);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/swap-xin`, { tokens, publicKey: wallet.publicKey })
+      let { transaction } = res.data;
 
-    let { transaction } = res.data;
+      transaction.instructions = transaction.instructions.map(i => {
+        return {
+          ...i,
+          data: new Buffer(i.data),
+          programId: new PublicKey(i.programId),
+          keys: i.keys.map(key => {
+            return {
+              ...key,
+              pubkey: new PublicKey(key.pubkey)
+            }
+          })
+        }
+      })
 
-    transaction.instructions = transaction.instructions.map(i => {
-      return {
-        ...i,
-        data: new Buffer(i.data),
-        programId: new PublicKey(i.programId),
-        keys: i.keys.map(key => {
-          return {
-            ...key,
-            pubkey: new PublicKey(key.pubkey)
-          }
-        })
+      transaction.signatures = transaction.signatures.map(s => {
+        return {
+          ...s,
+          publicKey: new PublicKey(s.publicKey),
+          signature: s.signature
+            ? new Buffer(s.signature)
+            : null
+        }
+      });
+
+      transaction = new Transaction(transaction);
+      const signedTransaction = await wallet.signTransaction(transaction, connection);
+      const isVerifiedSignature = signedTransaction.verifySignatures();
+
+      if (!isVerifiedSignature) {
+        throw new Error('Error signing transaction');
       }
-    })
 
-    transaction.signatures = transaction.signatures.map(s => {
-      return {
-        ...s,
-        publicKey: new PublicKey(s.publicKey),
-        signature: s.signature
-          ? new Buffer(s.signature)
-          : null
-      }
-    });
+      const rawTransaction = signedTransaction.serialize();
 
-    transaction = new Transaction(transaction)
+      await sendAndConfirmRawTransaction(connection, rawTransaction);
 
-    // const xinToken = new Token(
-    //   connection,
-    //   xinTokenMint,
-    //   TOKEN_PROGRAM_ID,
-    //   wallet.publicKey
-    // );
+      toast.success('Swap successful!');
+      setLoading(false);
+      setTokenBalance(tokenBalance - tokens);
+      setTokens(0);
 
-    // const fromTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(wallet.publicKey)
-    // const toTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET))
-    //
-    // console.log(fromTokenAccount.amount.toString());
-    // console.log(toTokenAccount.amount.toString())
-    //
-    // console.log('transferring', tokens, tokens * 1000000);
-
-    // transaction = new Transaction()
-    //   .add(
-    //     Token.createTransferInstruction(
-    //       TOKEN_PROGRAM_ID,
-    //       fromTokenAccount.address,
-    //       toTokenAccount.address,
-    //       wallet.publicKey,
-    //       [],
-    //       tokens * 1000000
-    //     )
-    //   )
-    //   .add(SystemProgram.transfer({
-    //     fromPubkey: new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET),
-    //     toPubkey: wallet.publicKey,
-    //     lamports: tokens * parseFloat(process.env.NEXT_PUBLIC_XIN_COST_IN_SOL) * LAMPORTS_PER_SOL,
-    //   }))
-
-    // transaction.recentBlockhash = (await connection.getRecentBlockhash('singleGossip')).blockhash;
-    // transaction.setSigners(wallet.publicKey, new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET));
-    //
-    // let transactionBuffer = transaction.serializeMessage();
-    // const signature = nacl.sign.detached(
-    //   new Uint8Array(transactionBuffer),
-    //   new Uint8Array(
-    //     JSON.parse(
-    //       bs58
-    //         .decode(process.env.NEXT_PUBLIC_XIN_WALLET_SECRET)
-    //         .toString()
-    //     )
-    //   )
-    // );
-
-    // transaction.setSigners(
-    //   // fee payed by the wallet owner
-    //   wallet.publicKey,
-    //   new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET)
-    // );
-
-    // transaction.addSignature(new PublicKey(process.env.NEXT_PUBLIC_XIN_WALLET), signature);
-
-    console.log(transaction)
-
-    const signed = await wallet.sendTransaction(transaction, connection);
-    await connection.confirmTransaction(signed, 'processed');
+    } catch (e) {
+      toast.error('Swap Error:', e.message);
+      setLoading(false);
+    }
 
   }
 
@@ -170,12 +140,24 @@ export default function Swop() {
               wallet.connected && (
                 <>
                   <div className={styles.inputWapper}>
-                    <input className={styles.xinput} type="number" value={tokens} onChange={onChange} />
+                    <input
+                      className={styles.xinput}
+                      type="text"
+                      value={tokens}
+                      onChange={onChange}
+                      onClick={onInputClick}
+                    />
                     <a href="#" onClick={setMax}>Max</a>
                   </div>
                   <p className={styles.exchange}>210 XIN = 0.69 SOL</p>
 
-                  <CTAButton onClick={swap}>SWAP</CTAButton>
+                  <CTAButton onClick={swap} disabled={loading || !tokens}>
+                    {
+                      loading
+                        ? <CircularProgress style={{ color: '#7C5D1E' }} />
+                        : 'SWOP'
+                    }
+                  </CTAButton>
                 </>
               )
 
