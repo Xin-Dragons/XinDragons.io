@@ -38,10 +38,6 @@ export default function Swop() {
 
   const swapActive = Boolean(process.env.NEXT_PUBLIC_SWAP_ACTIVE);
 
-  if (!swapActive) {
-    return <h2>SWAP OFFLINE</h2>
-  }
-
   async function updateTokenBalance() {
     if (wallet && wallet.publicKey) {
       const key = wallet.publicKey.toString();
@@ -143,41 +139,46 @@ export default function Swop() {
           <main className={styles.main}>
             <h2 className={styles.swapper}>The Swappooor</h2>
 
-            <div className={styles.walletButtons}>
-              <WalletMultiButton className={classnames({ [styles.disconnected]: !wallet.connected })} />
-              {
-                wallet.connected && <h4>$XIN balance: {tokenBalance}</h4>
-              }
-            </div>
             {
-              wallet.connected && (
-                <>
-                  <div className={styles.inputWapper}>
-                    <input
-                      className={styles.xinput}
-                      type="text"
-                      value={tokens}
-                      onChange={onChange}
-                      onClick={onInputClick}
-                    />
-                    <a href="#" onClick={setMax}>Max</a>
-                  </div>
-                  <p className={styles.exchange}>210 XIN = 0.69 SOL</p>
-
-                  <CTAButton onClick={swap} disabled={loading || !tokens}>
+              !swapActive
+                ? <h2 className={styles.swapper}>SWAP OFFLINE</h2>
+                : (
+                  <>
+                    <div className={styles.walletButtons}>
+                      <WalletMultiButton className={classnames({ [styles.disconnected]: !wallet.connected })} />
+                      {
+                        wallet.connected && <h4>$XIN balance: {tokenBalance}</h4>
+                      }
+                    </div>
                     {
-                      loading
-                        ? <CircularProgress style={{ color: '#7C5D1E' }} />
-                        : 'SWOP'
+                      wallet.connected && (
+                        <>
+                          <div className={styles.inputWapper}>
+                            <input
+                              className={styles.xinput}
+                              type="text"
+                              value={tokens}
+                              onChange={onChange}
+                              onClick={onInputClick}
+                            />
+                            <a href="#" onClick={setMax}>Max</a>
+                          </div>
+                          <p className={styles.exchange}>210 XIN = 0.69 SOL</p>
+
+                          <CTAButton onClick={swap} disabled={loading || !tokens}>
+                            {
+                              loading
+                                ? <CircularProgress style={{ color: '#7C5D1E' }} />
+                                : 'SWOP'
+                            }
+                          </CTAButton>
+                        </>
+                      )
                     }
-                  </CTAButton>
-                </>
-              )
-
-            }
+                  </>
+                )
+              }
           </main>
-
-
       </Paper>
     </Container>
     </Container>
