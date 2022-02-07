@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
+import { Toaster } from 'react-hot-toast'
 
 const fonts = [
   'Vermin-Vibes-1989',
@@ -17,6 +18,7 @@ import styles from './style.module.scss';
 export default function Layout({ children }) {
   return (
     <div className={styles.container}>
+      <Toaster />
       <Head>
         <title>Xin Dragons</title>
         <meta name="description" content="Xin Dragons" />
@@ -44,7 +46,7 @@ export default function Layout({ children }) {
               <Link href="/"><a>Home</a></Link>
             </li>
             <li>
-              <Link href="/mint"><a>Mint</a></Link>
+              <Link href="/swop"><a>Swop</a></Link>
             </li>
             <li>
               <Link href="/#roadmap"><a>Roadmap</a></Link>
