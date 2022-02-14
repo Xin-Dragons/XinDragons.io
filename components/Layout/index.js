@@ -29,6 +29,7 @@ export default function Layout({ children }) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        
         {
           fonts.map((font, index) => (
             <Fragment key={index}>
@@ -59,6 +60,10 @@ export default function Layout({ children }) {
             </li>
             <li>
               <Link href="/#team"><a>Team</a></Link>
+            </li>
+            {/* TODO FAQ */}
+            <li>
+              <Link href="/#team"><a>FAQ</a></Link>
             </li>
           </ul>
         </nav>
