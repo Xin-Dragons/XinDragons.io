@@ -137,7 +137,7 @@ export default function Swop() {
         >
 
           <main className={styles.main}>
-            <h2 className={styles.swapper}>The Swappooor</h2>
+            <h2 className={styles.gradient}>The Swappooor</h2>
 
             {
               !swapActive

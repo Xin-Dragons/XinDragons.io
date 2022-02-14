@@ -29,7 +29,7 @@ export default function Layout({ children }) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-        
+
         {
           fonts.map((font, index) => (
             <Fragment key={index}>
@@ -47,23 +47,16 @@ export default function Layout({ children }) {
               <Link href="/"><a>Home</a></Link>
             </li>
             <li>
-              <Link href="/swop"><a>Swop</a></Link>
+              <Link href="/#lore"><a>Lore</a></Link>
             </li>
             <li>
               <Link href="/#roadmap"><a>Roadmap</a></Link>
             </li>
             <li>
-              <Link href="/#babies"><a>Babies</a></Link>
-            </li>
-            <li>
-              <Link href="/#token"><a>Token</a></Link>
+              <Link href="/#the-chosen"><a>The Chosen</a></Link>
             </li>
             <li>
               <Link href="/#team"><a>Team</a></Link>
-            </li>
-            {/* TODO FAQ */}
-            <li>
-              <Link href="/#team"><a>FAQ</a></Link>
             </li>
           </ul>
         </nav>
@@ -73,7 +66,7 @@ export default function Layout({ children }) {
               <img src="/twitter.svg" alt="Xin Dragons Twitter" width={26} height={21} />
             </a>
           </Link>
-          <Link href="https://twitter.com/XinDragons">
+          <Link href="https://discord.gg/E7PtG4Vh6C">
             <a>
               <img src="/discord.svg" alt="Xin Dragons Discord" width={26} height={20} />
             </a>
@@ -99,7 +92,7 @@ export default function Layout({ children }) {
               <img src="/twitter-2.svg" alt="Xin Dragons Twitter"/>
             </a>
           </Link>
-          <Link href="https://twitter.com/XinDragons">
+          <Link href="https://discord.gg/E7PtG4Vh6C">
             <a>
               <img src="/discord-2.svg" alt="Xin Dragons Discord"/>
             </a>

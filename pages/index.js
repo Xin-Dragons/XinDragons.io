@@ -132,9 +132,10 @@ const oldphases = [
 const phases = [
   {
     title: 'Staking for $XIN',
-    color: 'grey-green',
-    align: 'teal',
-    offset: 30,
+    color: 'green',
+    align: 'left',
+    offset: 50,
+    image: 'cards-1.png',
     steps: [
       'Babies will pay their parents $XIN when located in the same wallet (Maximum 3 babies per parent)',
       'Rarer Gen1 AND Gen2 will pay more $XIN',
@@ -143,9 +144,9 @@ const phases = [
   },
   {
     title: 'Dragon Balls',
-    color: 'purple',
+    color: 'pink',
     align: 'right',
-    offset: 0,
+    image: 'cards-2.png',
     steps: [
       'Can only be bought from the $XIN vending machine',
       'Can be used to evolve a Gen1 dragon into a Super Dragon',
@@ -154,9 +155,8 @@ const phases = [
   },
   {
     title: 'Super Dragons',
-    color: 'light-gold',
     align: 'left',
-    offset: 0,
+    image: 'cards-3.png',
     steps: [
       'A Gen1 Dragon is evolved with remastered artwork',
       'Super Dragon is forever bound to the wallet from which they were evolved',
@@ -165,9 +165,10 @@ const phases = [
   },
   {
     title: 'The Fusion',
-    color: 'teal',
+    color: 'blue',
     align: 'right',
-    offset: 0,
+    image: 'cards-4.png',
+    offset: 50,
     steps: [
       'Up to 3 babies can be included in The Fusion',
       '100% of all future royalties from these babies paid to Fused wallet',
@@ -176,9 +177,9 @@ const phases = [
   },
   {
     title: 'Coming Soon',
-    color: 'blue',
+    color: 'red',
     align: 'right',
-    offset: 30,
+    marginTop: 80,
     steps: [
       // 'Up to 3 babies can be included in The Fusion',
     ]
@@ -189,6 +190,23 @@ const phases = [
 export default function Home() {
   return (
     <>
+      <section className={classnames(styles.section)}>
+        <div className={styles['section-inner']}>
+          <h2 id="lore" className={styles.heading}>Lore</h2>
+
+          <p>Since the beginning of time, the XIN Dragons have kept peace and order across the world. They protected the sky and the sea, controlled the seasons and protected mother nature. They lived in harmony with humans who worshipped them.</p>
+
+          <p>Not so long ago came a big storm, and with it the dark forces prevailed. Some of the dragons became greedy, and their evil caused chaos around the world. In their pursuit to become immortal Superdragons, the detractors captured all the Baby Dragons and demanded XIN tokens from their parents to release them. The precious Xin tokens are the only way to unlock the prized Dragonballs, which must be collected and combined with a parent dragon to ultimately become a never-before-seen Superdragon!</p>
+
+          <p>The whole world is now mobilized to help the righteous XIN Dragons bring the Baby Dragons back and restore peace, order and harmony.</p>
+
+          <p>An epic battle is in sight... Are you going to be the one to pave the way... Which path will you choose?</p>
+
+          <video autoPlay muted loop width="100%">
+            <source src="/lore.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
       <section className={classnames(styles.section, styles.dragons)}>
         <div className={styles['section-inner']}>
           <h2 id="dragons" className={styles.heading}>Dragons</h2>
@@ -209,68 +227,52 @@ export default function Home() {
 
       <section className={classnames(styles.section, styles.roadmap)}>
         <h2 id="roadmap" className={styles.heading}>The Evolved Roadmap</h2>
-        
+        <br />
         <div className={styles['roadmap-inner']}>
           {
             phases.map((phase, index) => (
-              <div key={index} className={classnames(styles.phase, styles[phase.align])} style={{ top: `${phase.offset}px` }}>
-
-                  <h3 className={classnames(styles.heading, styles[phase.color])}>{`Phase ${index + 1} - ${phase.title}`}</h3>
-                  <div className={styles['phase-inner']}>
-                    {
-                      Array.isArray(phase.steps)
-                        ? (
-                          <ul>
-                            {
-                              phase.steps.map((step, index) => <li key={index}>{step}</li>)
-                            }
-                          </ul>
-                        )
-                        : <p>{phase.steps}</p>
-                    }
-                  </div>
+              <div key={index} className={classnames(styles.phase, styles[phase.align])} style={phase.marginTop ? { marginTop: `${phase.marginTop}px` } : {}}>
+                <h3 className={classnames(styles.heading, styles[phase.color])}>{`Phase ${index + 1} - ${phase.title}`}</h3>
+                <div className={classnames(styles['phase-inner'], styles[phase.align])}>
+                  <img src={phase.image} alt="Cards" style={phase.offset ? { [phase.align]: `-${phase.offset}px` } : {}} />
+                  {
+                    Array.isArray(phase.steps)
+                      ? (
+                        <ul>
+                          {
+                            phase.steps.map((step, index) => <li key={index}>{step}</li>)
+                          }
+                        </ul>
+                      )
+                      : <p>{phase.steps}</p>
+                  }
+                </div>
               </div>
             ))
           }
         </div>
       </section>
 
+
+      <section id="the-chosen" className={classnames(styles.section, styles['the-chosen'])}>
+        <div className={styles['section-inner']}>
+        <div className={classnames(styles.flex)}>
+          <div className={styles['align-right']}>
+            <h2 className={styles.heading}>The Chosen</h2>
+            <p className={styles.uppercase}>There are 11 Chosen</p>
+            <p className={styles.uppercase}>One from each ancient dragon family... and one mysterious overlord who reigns supreme over the entire weyr, from the deepest depths of the darkest corner of the universe...</p>
+            <p>Each Chosen rules over its <span className={styles.lighter}>ENTIRE</span> clan, and demands that a <span className={styles.lighter}>TAX</span> is paid, in <span className={styles.lighter}>SOL</span>, every time one of its loyal subjects is traded in common barter (or via Magic Eden marketplace).</p>
+
+            <p>That tax will be paid at a rate of <span className={styles.lighter}>8%</span> of the total royalties received.</p>
+
+            <p>And for the one true overlord, a smaller tax must be paid for <span className={styles.lighter}>EVERY</span> dragon traded. This tax is set at <span className={styles.lighter}>3%</span> of <span className={styles.lighter}>ALL FUTURE ROYALTIES</span> from <span className={styles.lighter}>EVERY SINGLE SALE</span></p>
+          </div>
+          <img src="/the-chosen.png" alt="The Chosen" width={500} />
+        </div>
+        </div>
+      </section>
+
       <div className={styles['dark-bg']}>
-
-        <section className={classnames(styles.section)}>
-          <div className={styles['section-inner']}>
-          <h2 id="babies" className={classnames(styles.heading, styles['babies-header'])}>Xin Dragon Babies</h2>
-
-          <div className={classnames(styles.flex, styles.narrow)}>
-            <img src="/baby.png" alt="Xin Dragon Baby" width={145} height={143} />
-
-            <ul className={styles['align-left']}>
-              <li>Xin Dragon Babies will be cute remastered descendants of their more ferocious parents</li>
-              <li>Striking and instantly recognizable PFPs, with their own rarity and traits</li>
-              {/* <li>Holders of 3 dragons will be able to mint a FREE baby</li> */}
-              <li>WEN MINT? - TBD</li>
-            </ul>
-          </div>
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <div className={styles['section-inner']}>
-          <h2 id="token" className={classnames(styles.heading, styles['token-header'])}>$XIN Token</h2>
-
-          <div className={classnames(styles.flex, styles.narrow)}>
-            <ul className={styles['align-right']}>
-              <li>$XIN token has already been minted</li>
-              <li>Supply is 10,000,000</li>
-              <li>$XIN will not be listed on DEX (for now)</li>
-              <li>$XIN will be be used to power the Xin ecosystem</li>
-              <li>First use will be for minting a free baby</li>
-              <li>Other uses will be announced in the near future...</li>
-            </ul>
-            <img src="/xin-token-lg.png" alt="XIN Token" width={216} height={216} />
-          </div>
-          </div>
-        </section>
 
         <section className={styles.section}>
           <div className={styles['section-inner']}>
