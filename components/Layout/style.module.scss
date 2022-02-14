@@ -99,3 +99,12 @@
 .footer-socials a {
   margin: 0.25em;
 }
+
+@media (max-width: 1000px) {
+  .social {
+    position: static !important;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+  }
+}
