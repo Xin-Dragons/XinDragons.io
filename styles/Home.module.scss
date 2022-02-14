@@ -22,9 +22,7 @@
   }
 
   .section-inner {
-
     margin: 0 auto;
-
     max-width: 975px;
   }
 }
@@ -71,22 +69,64 @@
 }
 
 .phase {
-  position: absolute;
+  text-align: center;
   width: 471px;
   color: $light-grey;
-  &.left {
-    left: 0;
+  position: relative;
+
+  &:last-child {
+
+    h3 {
+      color: #FF0000E5;
+      font-size: 2.8em;
+    }
+
+    .phase-inner {
+      display: none;
+    }
   }
 
+
+  &:nth-child(odd) {
+    
+    &::after {
+      right: -50px;
+      top: 40%;
+      position: absolute;
+      content: url('../public/roadmap-bracket.png');
+    }
+  } 
+  
+  &:nth-child(even) {
+    
+    &::after {
+      left: -50px;
+      top: 40%;
+      position: absolute;
+      content: url('../public/roadmap-bracket.png');
+      transform: rotate(180deg);
+    }
+  }
+
+  &:last-child {
+    
+    &::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 730px) {
+    &::after {
+      display: none;
+    }
+  }
+  
   .heading {
     font-family: 'Vermin Vibes 1989', sans-serif;
     font-size: 1.6em;
     margin-bottom: 10px;
   }
 
-  &.right {
-    right: 0;
-  }
   .phase-inner {
     background-color: rgba(255, 255, 255, 0.08);
     border: 5px solid rgba(255, 255, 255, 0.16);
@@ -108,7 +148,8 @@
       padding: 0;
       max-width: 90%;
       font-weight: 500;
-
+      margin: 0;
+      
       li {
         padding-left: 1em;
       }
@@ -119,14 +160,15 @@
 .roadmap-inner {
   margin: 0 auto;
   max-width: 1150px;
-  background-image: url('../public/roadmap-arrow-new.png');
+  // background-image: url('../public/roadmap-arrow-new.png');
   // mask-image: linear-gradient(transparent 0%, black 20%);
-  height: 1150px;
+  height: 1400px;
   background-size: auto;
   background-repeat: no-repeat;
   background-position: center top;
   z-index: 10;
   position: relative;
+  display: inline-grid;
 
   ol {
     counter-reset: item;
@@ -207,6 +249,8 @@
 .grey-green { color: $grey-green; }
 .light-gold { color: $light-gold; }
 .purple { color: $purple; }
+.teal { color: $teal; }
+
 
 .grid {
   display: flex;
