@@ -85,6 +85,25 @@
   display: inline-block;
 }
 
+.claim {
+  margin-top: 1em;
+}
+
+.claimooor {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.block {
+  text-align: left;
+  display: block;
+  margin-bottom: 0;
+}
+
+.center {
+  text-align: center;
+}
+
 .phase {
   text-align: center;
   width: 600px;
@@ -674,15 +693,6 @@ ul.align-left {
     }
   }
 }
-
-// @media (max-width: 1000px) {
-//   .social {
-//     position: static !important;
-//     display: flex;
-//     align-items: center;
-//     justify-content:center;
-//   }
-// }
 
 @media (max-width: 1000px) {
   .modal-inner {
