@@ -1,10 +1,10 @@
-import { snapshot as doSnapshot } from '@xindragons/toolkit';
+// import { snapshot as doSnapshot } from '@xindragons/toolkit';
 import { createClient } from '@supabase/supabase-js';
 import { map, flatten, reduce, omit } from 'lodash';
 import { getClaimableTokens } from '../../lib/get-claimable-tokens';
 import allMints from '../../data/mints-all.json';
-const supabaseUrl = process.env.API_URL;
-const supabaseServiceKey = process.env.API_SECRET;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 const MAGIC_EDEN = 'GUfCR9mK6azb9vcpsxgXyj7XRPAKJd4KMHTTVvtncGgp';

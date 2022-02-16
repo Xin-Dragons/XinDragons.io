@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
-const supabaseUrl = process.env.API_URL;
-const apiSecret = process.env.API_SECRET;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const apiSecret = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const supabase = createClient(supabaseUrl, apiSecret);
 
 export default async function handler(req, res) {
@@ -15,5 +15,5 @@ export default async function handler(req, res) {
     return res.status(500).send({ message: 'Error updating claim amount' })
   }
 
-  res.send(200).send({ success: true });
+  res.status(200).send({ success: true });
 }

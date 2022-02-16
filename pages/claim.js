@@ -21,35 +21,44 @@ import axios from 'axios';
 
 import styles from '../styles/Home.module.scss'
 
-export default function claim({ data }) {
+export default function Claim({ data }) {
   const wallet = useWallet();
   const { connection } = useConnection()
   const [loading, setLoading] = useState(false);
   const [tokensToClaim, setTokensToClaim] = useState();
   const [tokenBalance, setTokenBalance] = useState();
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!wallet.publicKey) {
       return;
     }
-    setLoading(true);
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/staking/${wallet.publicKey}`)
-    setLoading(false);
-    const { data } = res;
-    if (res.status === 200) {
-      setTokensToClaim(data);
+
+    async function getTokensToClaim() {
+      setLoading(true);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/staking/${wallet.publicKey}`)
+      setLoading(false);
+      const { data } = res;
+      if (res.status === 200) {
+        setTokensToClaim(data);
+      }
     }
+
+    getTokensToClaim()
+
   }, [wallet.publicKey]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!wallet.publicKey) {
       return;
     }
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/get-token-balance/${wallet.publicKey}`)
-    const { data } = res;
-    if (res.status === 200) {
-      setTokenBalance(data.amount);
+    async function getTokenBalance() {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/get-token-balance/${wallet.publicKey}`)
+      const { data } = res;
+      if (res.status === 200) {
+        setTokenBalance(data.amount);
+      }
     }
+    getTokenBalance();
   }, [wallet.publicKey])
 
   async function claim() {
