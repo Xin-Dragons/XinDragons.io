@@ -26,7 +26,7 @@ export default function Claim({ data }) {
   const { connection } = useConnection()
   const [loading, setLoading] = useState(false);
   const [tokensToClaim, setTokensToClaim] = useState();
-  const [tokenBalance, setTokenBalance] = useState();
+  const [tokenBalance, setTokenBalance] = useState(0);
 
   useEffect(() => {
     if (!wallet.publicKey) {
@@ -55,7 +55,7 @@ export default function Claim({ data }) {
       const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/get-token-balance/${wallet.publicKey}`)
       const { data } = res;
       if (res.status === 200) {
-        setTokenBalance(data.amount);
+        setTokenBalance(data.amount || 0);
       }
     }
     getTokenBalance();
@@ -80,6 +80,8 @@ export default function Claim({ data }) {
           })
         }
       })
+
+      transaction.feePayer = new PublicKey(transaction.feePayer)
 
       transaction.signatures = transaction.signatures.map(s => {
         return {
@@ -110,8 +112,11 @@ export default function Claim({ data }) {
       setTokensToClaim(0);
 
     } catch (e) {
-      console.log(e)
-      toast.error('Claim Error:', e.message);
+      let message = e.message;
+      if (e.message.match(/Attempt to debit an account but found no record of a prior credit/)) {
+        message = 'Not enough SOL to create token account'
+      }
+      toast.error(`Claim Error: ${message}`);
       setLoading(false);
     }
   }

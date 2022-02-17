@@ -38,19 +38,55 @@ export default async function handler(req, res) {
   );
 
   const fromTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(fromWallet.publicKey)
-  const toTokenAccount = await xinToken.getOrCreateAssociatedAccountInfo(userWallet)
 
-  const transaction = new web3.Transaction()
-    .add(
+  const associatedDestinationTokenAddr = await Token.getAssociatedTokenAddress(
+    xinToken.associatedProgramId,
+    xinToken.programId,
+    xinTokenMint,
+    userWallet
+  );
+
+  const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
+
+  const instructions: web3.TransactionInstruction[] = [];
+  if (receiverAccount !== null && receiverAccount.owner.toBase58() !== destPublicKey.toBase58()) {
+    instructions.push(
+      Token.createSetAuthorityInstruction(
+        TOKEN_PROGRAM_ID,
+        fromTokenAccount,
+        userWallet,
+        "AccountOwner",
+        fromWallet.publicKey,
+        []
+      )
+    );
+  } else {
+    if (receiverAccount === null) {
+      instructions.push(
+        Token.createAssociatedTokenAccountInstruction(
+          xinToken.associatedProgramId,
+          xinToken.programId,
+          xinTokenMint,
+          associatedDestinationTokenAddr,
+          userWallet,
+          fromWallet.publicKey
+        )
+      )
+    }
+    instructions.push(
       Token.createTransferInstruction(
         TOKEN_PROGRAM_ID,
         fromTokenAccount.address,
-        toTokenAccount.address,
+        associatedDestinationTokenAddr,
         fromWallet.publicKey,
         [],
         tokensToClaim * 1000000
       )
     );
+  }
+
+  const transaction = new web3.Transaction().add(...instructions);
+  transaction.feePayer = userWallet;
 
   transaction.recentBlockhash = (await connection.getRecentBlockhash('singleGossip')).blockhash;
   transaction.setSigners(userWallet, fromWallet.publicKey);
