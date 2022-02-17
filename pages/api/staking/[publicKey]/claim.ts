@@ -49,41 +49,28 @@ export default async function handler(req, res) {
   const receiverAccount = await connection.getAccountInfo(associatedDestinationTokenAddr);
 
   const instructions: web3.TransactionInstruction[] = [];
-  if (receiverAccount !== null && receiverAccount.owner.toBase58() !== destPublicKey.toBase58()) {
+  if (receiverAccount === null) {
     instructions.push(
-      Token.createSetAuthorityInstruction(
-        TOKEN_PROGRAM_ID,
-        fromTokenAccount,
-        userWallet,
-        "AccountOwner",
-        fromWallet.publicKey,
-        []
-      )
-    );
-  } else {
-    if (receiverAccount === null) {
-      instructions.push(
-        Token.createAssociatedTokenAccountInstruction(
-          xinToken.associatedProgramId,
-          xinToken.programId,
-          xinTokenMint,
-          associatedDestinationTokenAddr,
-          userWallet,
-          fromWallet.publicKey
-        )
-      )
-    }
-    instructions.push(
-      Token.createTransferInstruction(
-        TOKEN_PROGRAM_ID,
-        fromTokenAccount.address,
+      Token.createAssociatedTokenAccountInstruction(
+        xinToken.associatedProgramId,
+        xinToken.programId,
+        xinTokenMint,
         associatedDestinationTokenAddr,
-        fromWallet.publicKey,
-        [],
-        tokensToClaim * 1000000
+        userWallet,
+        userWallet
       )
-    );
+    )
   }
+  instructions.push(
+    Token.createTransferInstruction(
+      TOKEN_PROGRAM_ID,
+      fromTokenAccount.address,
+      associatedDestinationTokenAddr,
+      fromWallet.publicKey,
+      [],
+      tokensToClaim * 1000000
+    )
+  );
 
   const transaction = new web3.Transaction().add(...instructions);
   transaction.feePayer = userWallet;
