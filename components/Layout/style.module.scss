@@ -108,3 +108,9 @@
     justify-content:center;
   }
 }
+
+@media (max-width: 700px) {
+  .baby {
+    display: none !important;
+  }
+}
