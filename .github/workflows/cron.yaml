@@ -1,7 +1,7 @@
 name: snapshot-ingest
 on:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: '*/5 * * * *'
 jobs:
   cron:
     runs-on: ubuntu-latest
