@@ -121,13 +121,13 @@ export default function Claim({ data }) {
     }
   }
 
-  async function snap() {
-    setLoading(true)
-    const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/run-snapshot`)
-    setLoading(false)
-
-    console.log(res)
-  }
+  // async function snap() {
+  //   setLoading(true)
+  //   const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/run-snapshot`)
+  //   setLoading(false)
+  //
+  //   console.log(res)
+  // }
 
   return (
     <Container>
@@ -161,9 +161,6 @@ export default function Claim({ data }) {
                         ? <CircularProgress />
                         : 'Claim'
                     }
-                  </CTAButton>
-                  <CTAButton onClick={snap}>
-                    snap
                   </CTAButton>
                 </div>
               )
