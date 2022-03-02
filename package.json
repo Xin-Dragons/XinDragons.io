@@ -2,9 +2,9 @@
   "name": "xin-dragons",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_OPTIONS='--inspect' next start",
     "lint": "next lint"
   },
   "dependencies": {
