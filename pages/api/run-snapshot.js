@@ -13,7 +13,8 @@ export default async function handler(req, res) {
 
       if (authorization === `Bearer ${process.env.API_SECRET_KEY}`) {
         try {
-          exec("ls -la ./.next/server", (error, stdout, stderr) => {
+          console.log(process.cwd())
+          exec("ls -la /var/task/pages", (error, stdout, stderr) => {
               if (error) {
                   console.log(`error: ${error.message}`);
                     res.status(200).json({ success: true });
@@ -27,7 +28,7 @@ export default async function handler(req, res) {
               res.status(200).json({ success: true });
               console.log(`stdout: ${stdout}`);
           });
-          fork('/vercel/path0/workers/collection.worker.js', [], { cwd: process.cwd() });
+          fork('/collection.worker.js', [], { cwd: process.cwd() });
         } catch(e) {
           console.error(e);
           return res.status(500).json({});
