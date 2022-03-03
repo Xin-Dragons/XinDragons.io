@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
       if (authorization === `Bearer ${process.env.API_SECRET_KEY}`) {
         try {
-          fork(path.resolve(__dirname, '../../workers/collection.worker.js'));
+          fork('./.next/server/collection.worker.js', [], { cwd: process.cwd() });
         } catch(e) {
           console.error(e);
           return res.status(500).json({});
