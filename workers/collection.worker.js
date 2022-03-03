@@ -8,6 +8,6 @@ const ingest = require('../lib/ingest-data');
     await ingest(snapshot);
     console.log('Data ingested')
   } catch (err) {
-    console.error('FAILED!!!!!!!!!!!!', err);
+    console.error('Error performing snap/ingest', err);
   }
 })();
