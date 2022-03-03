@@ -1,6 +1,7 @@
 import { map, flatten, reduce, omit } from 'lodash';
-import { fork } from 'child_process';
+import { fork, exec } from 'child_process';
 import path from 'path';
+
 
 import takeSnapshot from '../../lib/take-snapshot';
 import ingest from '../../lib/ingest-data';
@@ -12,7 +13,18 @@ export default async function handler(req, res) {
 
       if (authorization === `Bearer ${process.env.API_SECRET_KEY}`) {
         try {
-          fork('/collection.worker.js', [], { cwd: process.cwd() });
+          exec("ls -la", (error, stdout, stderr) => {
+              if (error) {
+                  console.log(`error: ${error.message}`);
+                  return;
+              }
+              if (stderr) {
+                  console.log(`stderr: ${stderr}`);
+                  return;
+              }
+              console.log(`stdout: ${stdout}`);
+          });
+          fork('collection.worker.js', [], { cwd: process.cwd() });
         } catch(e) {
           console.error(e);
           return res.status(500).json({});
