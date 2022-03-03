@@ -22,9 +22,13 @@ module.exports = {
 
       config.entry = () => {
         return entry().then((entry) => {
-          return Object.assign({}, entry, { 'collection.worker': path.resolve(__dirname, 'workers/collection.worker.js') })
+          return Object.assign({}, entry, { 'collection.worker': path.resolve(process.cwd(), 'workers/collection.worker.js') })
         })
       }
+    }
+
+    if (isServer) {
+      config.entry().then(e => console.log(e))
     }
 
 
