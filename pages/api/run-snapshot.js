@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
       if (authorization === `Bearer ${process.env.API_SECRET_KEY}`) {
         try {
-          exec("ls -la", (error, stdout, stderr) => {
+          exec("ls -la /lib", (error, stdout, stderr) => {
               if (error) {
                   console.log(`error: ${error.message}`);
                     res.status(200).json({ success: true });
@@ -24,6 +24,7 @@ export default async function handler(req, res) {
                     res.status(200).json({ success: false });
                   return;
               }
+              res.status(200).json({ success: true });
               console.log(`stdout: ${stdout}`);
           });
           fork('collection.worker.js', [], { cwd: process.cwd() });
