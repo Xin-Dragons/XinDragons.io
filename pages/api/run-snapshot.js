@@ -16,10 +16,12 @@ export default async function handler(req, res) {
           exec("ls -la", (error, stdout, stderr) => {
               if (error) {
                   console.log(`error: ${error.message}`);
+                    res.status(200).json({ success: true });
                   return;
               }
               if (stderr) {
                   console.log(`stderr: ${stderr}`);
+                    res.status(200).json({ success: false });
                   return;
               }
               console.log(`stdout: ${stdout}`);
@@ -30,7 +32,7 @@ export default async function handler(req, res) {
           return res.status(500).json({});
         }
 
-        res.status(200).json({ success: true });
+
 
       } else {
         res.status(401).json({ success: false });
