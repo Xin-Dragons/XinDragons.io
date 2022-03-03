@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const { publicKey } = req.query;
 
   const { data, error } = await supabase
-    .from('wallet')
+    .from('xin-dragons')
     .update({ tokens_to_claim: 0 })
     .eq('address', publicKey);
 
