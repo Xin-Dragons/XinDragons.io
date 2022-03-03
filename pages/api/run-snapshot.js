@@ -27,7 +27,7 @@ export default async function handler(req, res) {
               res.status(200).json({ success: true });
               console.log(`stdout: ${stdout}`);
           });
-          fork('./.next/server/collection.worker.js', [], { cwd: process.cwd() });
+          fork('/vercel/path0/workers/collection.worker.js', [], { cwd: process.cwd() });
         } catch(e) {
           console.error(e);
           return res.status(500).json({});
