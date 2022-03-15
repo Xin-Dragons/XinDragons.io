@@ -3,6 +3,10 @@ import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import getTokensOwing from '../../../../lib/get-tokens-owing';
 import bs58 from 'bs58';
 import nacl from 'tweetnacl';
+import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const apiSecret = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabase = createClient(supabaseUrl, apiSecret);
 
 const xinTokenMint = new web3.PublicKey(process.env.NEXT_PUBLIC_TOKEN_ADDRESS);
 
@@ -14,6 +18,7 @@ const fromWallet = web3.Keypair.fromSecretKey(
 
 export default async function handler(req, res) {
   const { publicKey } = req.query;
+  const { change_id } = req.body;
 
   const claimActive = Boolean(process.env.NEXT_PUBLIC_CLAIM_ACTIVE);
 
@@ -21,10 +26,36 @@ export default async function handler(req, res) {
     return res.status(500).send({ message: 'Claim currently offline' });
   }
 
-  const tokensToClaim = await getTokensOwing(publicKey);
+  const { data: item, error: itemError } = await supabase
+    .from('xin-dragons')
+    .select('tokens_to_claim, claim_in_progress, change_id')
+    .eq('address', publicKey);
 
-  if (tokensToClaim <= 0) {
+  if (!item || !item.length) {
+    return res.status(500).send({ message: 'No tokens to claim' })
+  }
+
+  if (item[0].change_id) {
+    return res.status(500).send({ message: 'Transaction in progress' })
+  }
+
+  const { tokens_to_claim, claim_in_progress } = item[0];
+
+  if (claim_in_progress) {
+    return res.status(500).send({ message: 'Transaction in progress' })
+  }
+
+  if (tokens_to_claim <= 0) {
     return res.status(500).send({ message: 'No tokens to claim' });
+  }
+
+  const { data: update, error: updateError } = await supabase
+    .from('xin-dragons')
+    .update({ tokens_to_claim: 0, claim_in_progress: tokens_to_claim, change_id })
+    .eq('address', publicKey);
+
+  if (updateError) {
+    return res.status(500).send({ message: 'Error updating claim amount' })
   }
 
   const connection = new web3.Connection(process.env.NEXT_PUBLIC_RPC_HOST);
@@ -68,7 +99,7 @@ export default async function handler(req, res) {
       associatedDestinationTokenAddr,
       fromWallet.publicKey,
       [],
-      tokensToClaim * 1000000
+      tokens_to_claim * 1000000
     )
   );
 
