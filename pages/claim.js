@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import classnames from 'classnames';
 import { useEffect, useState } from 'react';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
@@ -24,98 +23,67 @@ import styles from '../styles/Home.module.scss'
 
 export default function Claim({ data }) {
   const wallet = useWallet();
-  const [change_id, setChange_id] = useState(null);
   const { connection } = useConnection()
   const [loading, setLoading] = useState(false);
   const [tokensToClaim, setTokensToClaim] = useState();
   const [tokenBalance, setTokenBalance] = useState(0);
 
-  async function updateChangeLog(success) {
-    await axios.post(`/api/staking/${wallet.publicKey}/send`, { change_id, success });
-    setChange_id(null)
-  }
+  async function claim() {
+    try {
+      setLoading(true);
+      const res = await axios.post(`/api/staking/${wallet.publicKey}/claim`)
+      let { transaction } = res.data;
 
-  useEffect(() => {
-    if (change_id) {
-      window.onbeforeunload = async (e) => {
-        await updateChangeLog(false);
-        event.returnValue = 'Claim in progress';
-      }
-    } else {
-      window.onbeforeunload = null;
-    }
-
-    return () => {
-      window.onbeforeunload = null;
-    }
-  }, [change_id])
-
-  useEffect(() => {
-    if (change_id) {
-      doClaim();
-    }
-  }, [change_id])
-
-  async function doClaim() {
-    if (change_id) {
-      try {
-        setLoading(true);
-        const res = await axios.post(`/api/staking/${wallet.publicKey}/claim`, { change_id })
-        let { transaction } = res.data;
-
-        transaction.instructions = transaction.instructions.map(i => {
-          return {
-            ...i,
-            data: new Buffer(i.data),
-            programId: new PublicKey(i.programId),
-            keys: i.keys.map(key => {
-              return {
-                ...key,
-                pubkey: new PublicKey(key.pubkey)
-              }
-            })
-          }
-        })
-
-        transaction.feePayer = new PublicKey(transaction.feePayer)
-
-        transaction.signatures = transaction.signatures.map(s => {
-          return {
-            ...s,
-            publicKey: new PublicKey(s.publicKey),
-            signature: s.signature
-              ? new Buffer(s.signature)
-              : null
-          }
-        });
-
-        transaction = new Transaction(transaction);
-        const signedTransaction = await wallet.signTransaction(transaction, connection);
-        const isVerifiedSignature = signedTransaction.verifySignatures();
-
-        if (!isVerifiedSignature) {
-          throw new Error('Error signing transaction');
+      transaction.instructions = transaction.instructions.map(i => {
+        return {
+          ...i,
+          data: new Buffer(i.data),
+          programId: new PublicKey(i.programId),
+          keys: i.keys.map(key => {
+            return {
+              ...key,
+              pubkey: new PublicKey(key.pubkey)
+            }
+          })
         }
+      })
 
-        const rawTransaction = signedTransaction.serialize();
+      transaction.feePayer = new PublicKey(transaction.feePayer)
 
-        await sendAndConfirmRawTransaction(connection, rawTransaction);
-
-        toast.success('Claim successful!');
-        setLoading(false);
-        setTokenBalance(tokenBalance + tokensToClaim);
-        setTokensToClaim(0);
-        await updateChangeLog(true);
-
-      } catch (e) {
-        let message = e.message;
-        if (e.message.match(/Attempt to debit an account but found no record of a prior credit/)) {
-          message = 'Not enough SOL to create token account'
+      transaction.signatures = transaction.signatures.map(s => {
+        return {
+          ...s,
+          publicKey: new PublicKey(s.publicKey),
+          signature: s.signature
+            ? new Buffer(s.signature)
+            : null
         }
-        toast.error(`Claim Error: ${message}`);
-        await updateChangeLog(false);
-        setLoading(false);
+      });
+
+      transaction = new Transaction(transaction);
+      const signedTransaction = await wallet.signTransaction(transaction, connection);
+      const isVerifiedSignature = signedTransaction.verifySignatures();
+
+      if (!isVerifiedSignature) {
+        throw new Error('Error signing transaction');
       }
+
+      const rawTransaction = signedTransaction.serialize();
+
+      const result = await axios.post(`/api/staking/${wallet.publicKey}/send`, { rawTransaction, publicKey: wallet.publicKey })
+
+      toast.success('Claim successful!');
+      setLoading(false);
+      setTokenBalance(tokenBalance + tokensToClaim);
+      setTokensToClaim(0);
+
+    } catch (e) {
+      if (e?.message?.match(/Attempt to debit an account but found no record of a prior credit/)) {
+        message = 'Not enough SOL to create token account'
+      }
+      const message = e.response.data.message;
+      toast.error(`Claim Error: ${message}`);
+      setLoading(false);
     }
   }
 
@@ -126,7 +94,7 @@ export default function Claim({ data }) {
 
     async function getTokensToClaim() {
       setLoading(true);
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/staking/${wallet.publicKey}`)
+      const res = await axios.get(`/api/staking/${wallet.publicKey}`)
       setLoading(false);
       const { data } = res;
       if (res.status === 200) {
@@ -143,7 +111,7 @@ export default function Claim({ data }) {
       return;
     }
     async function getTokenBalance() {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_HOST}/api/get-token-balance/${wallet.publicKey}`)
+      const res = await axios.get(`/api/get-token-balance/${wallet.publicKey}`)
       const { data } = res;
       if (res.status === 200) {
         setTokenBalance(data.amount || 0);
@@ -151,10 +119,6 @@ export default function Claim({ data }) {
     }
     getTokenBalance();
   }, [wallet.publicKey])
-
-  const claim = () => {
-    setChange_id(uuidv4())
-  }
 
   return (
     <Container>

@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import getTokensOwing from '../../../../lib/get-tokens-owing';
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { publicKey } = req.query;
 
   const tokensToClaim = await getTokensOwing(publicKey);
