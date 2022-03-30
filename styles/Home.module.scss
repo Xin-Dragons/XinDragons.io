@@ -1,0 +1,715 @@
+@import 'colors';
+
+@mixin colorLi($color) {
+  color: $color;
+
+  &::before {
+    background-color: $color;
+  }
+}
+
+.section {
+  text-align: center;
+  padding: 2rem 2rem;
+  position: relative;
+  margin-top: 50px;
+
+  p {
+    color: $font-color;
+  }
+
+  ul {
+    color: $font-color;
+  }
+
+  .section-inner {
+    margin: 0 auto;
+    max-width: 975px;
+  }
+
+  video {
+    margin: 5em auto;
+  }
+}
+
+.dragons {
+  padding: 0;
+}
+
+.dark-bg {
+  background-color: $dark-grey;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  > img {
+    margin: 1em;
+  }
+}
+
+.narrow {
+  max-width: 670px !important;
+}
+
+.roadmap {
+  padding-top: 5em;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-color: black;
+    background-image: url('../public/roadmap-bg.png');
+    mask-image: linear-gradient(transparent 0%, black 20%, transparent 90%);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.heading {
+  font-family: Trade Winds;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 auto 1em auto;
+  background: linear-gradient(269.59deg, rgba(156, 129, 81, 0.9) -22.4%, rgba(221, 185, 91, 0.9) 10.69%, rgba(109, 85, 30, 0.9) 72.76%, rgba(254, 239, 177, 0.9) 107.27%);
+  background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  display: inline-block;
+  color:rgba(156, 129, 81, 0.9)
+}
+
+.claim {
+  margin-top: 1em;
+}
+
+.claimooor {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.block {
+  text-align: left;
+  display: block;
+  margin-bottom: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.phase {
+  text-align: center;
+  width: 600px;
+  color: $light-grey;
+  position: relative;
+
+  &:last-child {
+
+    h3 {
+      color: #FF0000E5;
+      font-size: 2.8em;
+    }
+
+    .phase-inner {
+      display: none;
+    }
+  }
+
+
+  &:nth-child(odd) {
+
+    &::after {
+      right: -50px;
+      top: 40%;
+      position: absolute;
+      content: url('../public/roadmap-bracket.png');
+    }
+  }
+
+  &:nth-child(even) {
+
+    &::after {
+      left: -50px;
+      top: 40%;
+      position: absolute;
+      content: url('../public/roadmap-bracket.png');
+      transform: rotate(180deg);
+    }
+  }
+
+  &:last-child {
+
+    &::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 730px) {
+    &::after {
+      display: none;
+    }
+  }
+
+  .heading {
+    font-family: 'Vermin Vibes 1989', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: left;
+
+    &.green {
+      -webkit-text-fill-color: #91CF9C;
+      background-clip: inherit;
+      background: none;
+    }
+
+    &.pink {
+      -webkit-text-fill-color: #FF7EDB;
+      background-clip: inherit;
+      background: none;
+    }
+
+    &.blue {
+      -webkit-text-fill-color: #31CCFA;
+      background-clip: inherit;
+      background: none;
+    }
+
+    &.red {
+      -webkit-text-fill-color: #FF0000;
+      background-clip: inherit;
+      background: none;
+    }
+  }
+
+  &.left {
+    .heading {
+      text-align: right;
+    }
+  }
+
+  .phase-inner {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 5px solid rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    height: 142px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    &.left {
+      padding-left: 170px;
+
+      img {
+        left: -25px;
+      }
+    }
+
+    &.right {
+      padding-right: 170px;
+
+      img {
+        right: -25px;
+      }
+    }
+
+    img {
+      position: absolute;
+    }
+
+    p {
+      color: $light-grey;
+      font-weight: 500;
+    }
+
+    ul {
+      list-style-type: '»';
+      text-align: left;
+      padding: 0;
+      max-width: 90%;
+      font-weight: 500;
+      margin: 0;
+
+      li {
+        padding-left: 1em;
+      }
+    }
+  }
+}
+
+.roadmap-inner {
+  margin: 0 auto;
+  max-width: 1150px;
+  // background-image: url('../public/roadmap-arrow-new.png');
+  // mask-image: linear-gradient(transparent 0%, black 20%);
+  height: 1400px;
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: center top;
+  z-index: 10;
+  position: relative;
+  display: inline-grid;
+
+  ol {
+    counter-reset: item;
+    list-style-type: none;
+    margin: 2.5em auto 0 auto;
+    color: white;
+    font-size: 2em;
+    padding-bottom: 2em;
+    font-family: 'Vermin Vibes 1989', sans-serif;
+
+    li {
+      margin-bottom: 2em;
+
+      &::before {
+        display: inline-block;
+        content: counter(item);
+        counter-increment: item;
+        color: white;
+        width: 1.2em;
+        height: 1.2em;
+        line-height: 1.4em;
+        margin-right: 0.5em;
+        border-radius: 100%;
+        vertical-align: middle;
+      }
+
+      &:nth-child(1) { @include colorLi($green-2); }
+      &:nth-child(2) { @include colorLi($crystal-gold); }
+      &:nth-child(3) { @include colorLi($chinese-neon); }
+      &:nth-child(4) { @include colorLi($deep-sea); }
+      &:nth-child(5) {
+        @include colorLi($crystal);
+        margin-top: -1.2em;
+
+        &::before {
+          content: '';
+          background-color: inherit;
+          background-image: url('../public/xin-token.png');
+          width: 97px;
+          height: 97px;
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          background-image: url('../public/egg.png');
+          width: 565px;
+          height: 565px;
+          margin: -70px auto 0 auto;
+        }
+      }
+      &:nth-child(6) {
+        @include colorLi($pink);
+        margin-top: -250px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.the-chosen {
+  padding: 150px 20px;
+  background: url('../public/chosen-bg.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  .heading {
+    text-shadow: 0px 0px 85px #FF0000;
+  }
+
+  p {
+    color: #9D927B;
+    font-weight: 500;
+
+    .lighter {
+      color: #C1BBAE
+    }
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+    color: #C7AD75;
+    font-weight: normal;
+  }
+}
+
+.xin-chromatic { color: $xin-chromatic; }
+.crystal-gold { color: $crystal-gold; }
+.chinese-neon { color: $chinese-neon; }
+.deep-sea { color: $deep-sea; }
+.green-2 { color: $green-2; }
+.gargoyle-purple { color: $gargoyle-purple; }
+.chinese { color: $chinese; }
+.crystal { color: $crystal; }
+.swamp { color: $swamp; }
+.gargoyle { color: $gargoyle; }
+.xin { color: $xin; }
+.grey-green { color: $grey-green; }
+.light-gold { color: $light-gold; }
+.purple { color: $purple; }
+.teal { color: $teal; }
+
+
+.grid {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.card {
+  margin: 5px;
+  padding: 10px;
+  text-align: left;
+  text-decoration: none;
+  width: 185px;
+  height: 268px;
+  text-align: center;
+  vertical-align: top;
+  background-image: url('../public/card.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  h3 {
+    font-family: "Vermin Vibes 1989", sans-serif;
+    font-size: 20px;
+    line-height: 17.5px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+    font-weight: 900;
+  }
+
+  p {
+    color: $dark-brown;
+    margin-top: 0;
+    font-size: 11px;
+  }
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+ul.align-right {
+  text-align: right;
+  list-style-type: none;
+  li {
+    &:after {
+      content: '»';
+      margin-left: 1em;
+    }
+  }
+
+}
+
+ul.align-left {
+  text-align: left;
+  list-style-type: '»';
+  li {
+    padding-left: 1em;
+  }
+}
+
+.babies-header {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.token-header {
+  margin-top: 4em;
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .team-member {
+    margin: 0 2em;
+    img {
+      border-radius: 100%;
+    }
+  }
+}
+
+@media (max-width: 730px) {
+  ul.align-right {
+    text-align: left;
+    list-style-type: '»';
+    li {
+      padding-left: 1em;
+      &:after {
+        content: '';
+      }
+    }
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+}
+
+.wallet-card {
+  cursor: pointer;
+  position: relative;
+
+  img {
+    opacity: 80%;
+  }
+
+  &:hover {
+    filter: brightness(80%);
+    transition: all 0.5s ease;
+  }
+
+  p {
+    font-size: .8em;
+    margin-bottom: 7px;
+  }
+
+}
+
+.button {
+  background-color: $phantom-blue;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 20px;
+  font-family: 'Vermin Vibes 1989', sans-serif;
+  font-size: 1.5em;
+  margin: 2em 0;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-filter: brightness(80%);
+    transition: all 0.5s ease;
+  }
+
+  span {
+    display: inline-block;
+    line-height: 34px;
+    vertical-align: middle;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+
+  .modal-inner {
+    background-image: url('/card.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 5px;
+    width: 30%;
+    height: 100%;
+    margin: 7% auto;
+    padding: 20px;
+    text-align: center;
+    color: $dark-grey;
+
+    img {
+      display: block;
+      opacity: 80%;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .heading {
+      font-family: "Vermin Vibes 1989", sans-serif;
+      font-size: 1.7em;
+      margin-top: 0.5em;
+    }
+
+    dl {
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+
+      dt {
+        font-weight: bold;
+        &:after {
+          content: ':'
+        }
+      }
+
+      dt, dd {
+        float: left;
+        width: 50%;
+        padding: 0;
+        margin: 0
+      }
+    }
+  }
+}
+
+.moonrank {
+  font-family: IBM Plex Sans,sans-serif;
+  border: 0 solid #e5e7eb;
+  border-radius: .25rem;
+  background-color: #291560;
+  padding: 3px 5px;
+
+  display: inline-block;
+
+  .moonrank {
+    color: rgb(247, 220, 90);
+  }
+
+  &:hover {
+    .rank {
+      color: rgb(247, 220, 90);
+    }
+  }
+}
+
+.walletButtons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    background: linear-gradient(83.39deg, #A88848 6.2%, #FCEEB2 36.17%, #DDB55B 73.65%, #FEEFB1 137.01%);
+    color: #7C5D1E;
+    font-size: 16px;
+  }
+
+  h4 {
+    background: linear-gradient(83.39deg, #A88848 6.2%, #FCEEB2 36.17%, #DDB55B 73.65%, #FEEFB1 137.01%);
+    color: #7C5D1E;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    line-height: 48px;
+    width: 100%;
+    text-align: center;
+    border-radius: 4px;
+  }
+}
+
+.swapper {
+  font-family: Trade Winds;
+  font-weight: normal;
+  text-align: center;
+  margin: 0;
+  background: linear-gradient(83.39deg, #A88848 6.2%, #FCEEB2 36.17%, #DDB55B 73.65%, #FEEFB1 137.01%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.xinput {
+  width: 100%;
+  background: #111111;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 48px;
+  border-radius: 4px;
+  padding-left: 1em;
+  padding-right: 1em;
+  font-size: 1.25em;
+  color: #F9E8A9;
+  border: none;
+
+  &:before {
+    content: 'XIN'
+  }
+}
+
+.disconnected {
+  margin: 20px auto;
+}
+
+.exchange {
+  color: #DFB85F;
+  text-align: center;
+  font-weight: bold;
+}
+
+.inputWapper {
+  background: linear-gradient(83.39deg, #A88848 6.2%, #FCEEB2 36.17%, #DDB55B 73.65%, #FEEFB1 137.01%);
+  padding: 1px;
+  border-radius: 4px;
+
+  position: relative;
+
+  a {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    color: #F9E8A9;
+  }
+}
+
+
+.chosen {width: 500px;}
+
+@media (max-width: 1020) {
+  .social {
+    position: static !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+    // background-image: url('../public/roadmap-arrow-small.png');
+    // background-position: center 100px;
+    // height: 1250px;
+  }
+}
+
+@media (max-width: 850px) {
+  .the-chosen {
+    .flex {
+      flex-direction: column;
+    }
+  }
+  .phase-inner img {display:none;}
+  .phase-inner {padding-left: 5px !important;padding-right: 5px !important;}
+  .chosen {width: 100%;}
+ 
+}
+
+@media (max-width: 1020px) {
+  .phase {
+    position: static;
+    margin: 0 auto 50px auto;
+    max-width: 471px;
+    width: unset;
+    height: unset;
+
+    .heading {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .modal-inner {
+    width: 100% !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-size: cover;
+  }
+}
