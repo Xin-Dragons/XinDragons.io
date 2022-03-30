@@ -267,7 +267,7 @@ export default function Home() {
 
             <p>And for the one true overlord, a smaller tax must be paid for <span className={styles.lighter}>EVERY</span> dragon traded. This tax is set at <span className={styles.lighter}>3%</span> of <span className={styles.lighter}>ALL FUTURE ROYALTIES</span> from <span className={styles.lighter}>EVERY SINGLE SALE</span></p>
           </div>
-          <img src="/the-chosen.png" alt="The Chosen" width={500} />
+          <img src="/the-chosen.png" alt="The Chosen!" width={500} />
         </div>
         </div>
       </section>
