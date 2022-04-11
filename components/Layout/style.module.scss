@@ -28,7 +28,8 @@
 
 .header {
   font-family: "Vermin Vibes 1989", sans-serif;
-  font-size: 2em;
+  font-size: 1.5em;
+  text-transform: uppercase;
   z-index: 1;
 
   nav {
@@ -113,4 +114,8 @@
   .baby {
     display: none !important;
   }
+  .header nav ul li{    display: block !important;
+    padding: 10px;
+    border-bottom: 1px solid #50471b;
+    text-align: center;}
 }
