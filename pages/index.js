@@ -267,31 +267,68 @@ export default function Home() {
 
             <p>And for the one true overlord, a smaller tax must be paid for <span className={styles.lighter}>EVERY</span> dragon traded. This tax is set at <span className={styles.lighter}>3%</span> of <span className={styles.lighter}>ALL FUTURE ROYALTIES</span> from <span className={styles.lighter}>EVERY SINGLE SALE</span></p>
           </div>
-          <img src="/the-chosen.png" alt="The Chosen!" width={500} />
+
+          <img src="/the-chosen.png" alt="The Chosen" width={500} className={styles.chosen}/>
         </div>
         </div>
       </section>
 
-      <div className={styles['dark-bg']}>
-
+      <div className={styles["dark-bg"]}>
         <section className={styles.section}>
-          <div className={styles['section-inner']}>
-            <h2 id="team" className={classnames(styles.heading, styles['token-header'])}>Team</h2>
+          <div className={styles["section-inner"]}>
+            <h2
+              id="team"
+              className={classnames(styles.heading, styles["token-header"])}
+            >
+              Team
+            </h2>
 
             <div className={styles.team}>
-              <div className={styles['team-member']}>
-                <Image src="/gentlemonke.png" height={150} width={150} />
-                <p>The Gentlemonke<br />Development Lead</p>
+              <div className={styles["team-member"]}>
+                <img src="/gentlemonke.png" />
+                <p>
+                  The Gentlemonke
+                  <br />
+                  Development Lead
+                </p>
               </div>
 
-              <div className={styles['team-member']}>
-                <Image src="/hal.png" height={150} width={150} />
-                <p>Hal<br />Community Lead</p>
+              <div className={styles["team-member"]}>
+                <img src="/hal.png" />
+                <p>
+                  Hal
+                  <br />
+                  Business Operations Lead
+                </p>
+              </div>
+
+              <div className={styles["team-member"]}>
+                <img src="/akarune.webp" />
+                <p>
+                  Akarune
+                  <br />
+                  Community Lead and Project Management{" "}
+                </p>
+              </div>
+              <div className={styles["team-member"]}>
+                <img src="/groovy.gif" />
+                <p>
+                  GroovyEnzio
+                  <br />
+                  Partner relations and Business Advisory{" "}
+                </p>
+              </div>
+              <div className={styles["team-member"]}>
+                <img src="/alex.webp" />
+                <p>
+                  Alex
+                  <br />
+                  Chief Design Officer{" "}
+                </p>
               </div>
             </div>
           </div>
         </section>
-
       </div>
     </>
   )
