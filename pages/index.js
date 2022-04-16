@@ -288,7 +288,7 @@ export default function Home() {
                 <p>
                   The Gentlemonke
                   <br />
-                  Business Operations Lead
+                  Development Lead
                 </p>
               </div>
 
@@ -297,7 +297,7 @@ export default function Home() {
                 <p>
                   Hal
                   <br />
-                  Community Lead
+                  Business Operations Lead
                 </p>
               </div>
 
