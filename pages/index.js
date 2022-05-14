@@ -306,7 +306,7 @@ export default function Home() {
                 <p>
                   Akarune
                   <br />
-                  Community Lead and Project Management{" "}
+                  Community Lead and Project Management
                 </p>
               </div>
               <div className={styles["team-member"]}>
@@ -314,7 +314,7 @@ export default function Home() {
                 <p>
                   GroovyEnzio 🍉
                   <br />
-                  Partner Relations and Business Advisory{" "}
+                  Partner Relations and Business Advisory
                 </p>
               </div>
               <div className={styles["team-member"]}>
@@ -322,7 +322,7 @@ export default function Home() {
                 <p>
                   Alex
                   <br />
-                  Chief Design Officer{" "}
+                  Chief Design Officer
                 </p>
               </div>
             </div>
