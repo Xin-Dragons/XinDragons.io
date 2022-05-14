@@ -9,61 +9,61 @@ const cards = [
     src: '/chromatic.png',
     title: 'Xin Chromatic',
     color: 'xin-chromatic',
-    text: 'It can change into different shapes, even human beings. It is said that it can control all the seas'
+    text: 'Masters of light and colour, you see only what they want you to see. A rainbow is a sure sign that a Xin Chromatic was flying free. '
   },
   {
     src: '/gold.png',
     title: 'Crystal Gold',
     color: 'crystal-gold',
-    text: 'Protects hidden treasures or personal wealth.'
+    text: 'Protectors of Peace are the diplomats of the Xin Dragons. Constantly communicating with the many races to maintain the fragile balance of the world.'
   },
   {
     src: '/neon.png',
     title: 'Chinese Neon',
     color: 'chinese-neon',
-    text: 'It is said that the coiling dragon can control time.'
+    text: 'The Lords of Time command great respect within the Xin Dragons. Whether time crawls or hours go by in a flash, that is the domain of the Chinese Neon. '
   },
   {
     src: '/sea.png',
     title: 'Deep Sea',
     color: 'deep-sea',
-    text: 'Lives in the seas, rivers, lakes, or underground. It can control the flow of rivers or streams.'
+    text: 'Denizens of the Deep that maintain the oceans and the seas. All life underwater defers to their rule, and the tides ebb and flow to their moods. '
   },
   {
     src: '/gargoyle-purple.png',
     title: 'Gargoyle Purple',
     color: 'gargoyle-purple',
-    text: 'Powerful and evil dragon that often makes floods.'
+    text: 'They are one with the earth, the mountains and the hills and they can mould dust and dirt to their will. When angered the earth quakes.'
   },
   {
     src: '/chinese.png',
     title: 'Chinese',
     color: 'chinese',
-    text: 'It controls the four seasons and descendants of the Yellow Emperor'
+    text: 'Friends of the Forest where they dwell they dictate the colour of the leaves cells. A flash of yellow in the jungle does not bode well. '
   },
   {
     src: '/crystal.png',
     title: 'Crystal',
     color: 'crystal',
-    text: 'It can fly through thick cloud and make rain.'
+    text: 'Nomads that scour the skies, they shape the storms and all it implies. Their breath makes rain and creates ice and when they ride lightning thunder roars through the air.'
   },
   {
     src: '/swamp.png',
     title: 'Swamp',
     color: 'swamp',
-    text: 'The green dragon represents the east and controls rain and wind.'
+    text: 'Makers of the cool currents and the billowing breeze these Dragons are rarely heard or seen. They rid the world of stagnant scenes while staying hidden in their den. '
   },
   {
     src: '/gargoyle.png',
     title: 'Gargoyle',
     color: 'gargoyle',
-    text: 'In ancient China, this dragon is often linked to catastrophes like storms and floods.'
+    text: 'The underworld is their home where they tend to the diamonds and gold. If you find yourself lost in a cave then call for a gargoyle and chances are you will be saved. '
   },
   {
     src: '/xin.png',
     title: 'Xin',
     color: 'xin',
-    text: 'Lucky Dragons, it is said that they bring luck to their holders'
+    text: 'None know the true purpose of the Xin. They wander the world bringing luck to the few that they bless. Perhaps soon the world will reveal their real roles.  '
   }
 ];
 
