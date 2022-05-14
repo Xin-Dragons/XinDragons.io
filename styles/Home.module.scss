@@ -46,7 +46,7 @@
   justify-content: center;
   margin: 0 auto;
 
-  > img {
+  >img {
     margin: 1em;
   }
 }
@@ -79,13 +79,11 @@
   font-weight: normal;
   text-align: center;
   margin: 0 auto 1em auto;
-  background: linear-gradient(
-    269.59deg,
-    rgba(156, 129, 81, 0.9) -22.4%,
-    rgba(221, 185, 91, 0.9) 10.69%,
-    rgba(109, 85, 30, 0.9) 72.76%,
-    rgba(254, 239, 177, 0.9) 107.27%
-  );
+  background: linear-gradient(269.59deg,
+      rgba(156, 129, 81, 0.9) -22.4%,
+      rgba(221, 185, 91, 0.9) 10.69%,
+      rgba(109, 85, 30, 0.9) 72.76%,
+      rgba(254, 239, 177, 0.9) 107.27%);
   background-clip: text;
   // -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -290,15 +288,19 @@
       &:nth-child(1) {
         @include colorLi($green-2);
       }
+
       &:nth-child(2) {
         @include colorLi($crystal-gold);
       }
+
       &:nth-child(3) {
         @include colorLi($chinese-neon);
       }
+
       &:nth-child(4) {
         @include colorLi($deep-sea);
       }
+
       &:nth-child(5) {
         @include colorLi($crystal);
         margin-top: -1.2em;
@@ -320,6 +322,7 @@
           margin: -70px auto 0 auto;
         }
       }
+
       &:nth-child(6) {
         @include colorLi($pink);
         margin-top: -250px;
@@ -358,45 +361,59 @@
 .xin-chromatic {
   color: $xin-chromatic;
 }
+
 .crystal-gold {
   color: $crystal-gold;
 }
+
 .chinese-neon {
   color: $chinese-neon;
 }
+
 .deep-sea {
   color: $deep-sea;
 }
+
 .green-2 {
   color: $green-2;
 }
+
 .gargoyle-purple {
   color: $gargoyle-purple;
 }
+
 .chinese {
   color: $chinese;
 }
+
 .crystal {
   color: $crystal;
 }
+
 .swamp {
   color: $swamp;
 }
+
 .gargoyle {
   color: $gargoyle;
 }
+
 .xin {
   color: $xin;
 }
+
 .grey-green {
   color: $grey-green;
 }
+
 .light-gold {
   color: $light-gold;
 }
+
 .purple {
   color: $purple;
 }
+
 .teal {
   color: $teal;
 }
@@ -415,7 +432,7 @@
   text-align: left;
   text-decoration: none;
   width: 185px;
-  height: 268px;
+  height: 310px;
   text-align: center;
   vertical-align: top;
   background-image: url("../public/card.png");
@@ -427,7 +444,7 @@
     font-size: 20px;
     line-height: 17.5px;
     margin-top: 10px;
-    margin-bottom: 0px;
+    margin-bottom: 7px;
     text-transform: uppercase;
     font-weight: 900;
   }
@@ -447,6 +464,7 @@
 ul.align-right {
   text-align: right;
   list-style-type: none;
+
   li {
     &:after {
       content: "»";
@@ -458,6 +476,7 @@ ul.align-right {
 ul.align-left {
   text-align: left;
   list-style-type: "»";
+
   li {
     padding-left: 1em;
   }
@@ -481,11 +500,13 @@ ul.align-left {
 
   .team-member {
     margin: 0 2em;
+
     img {
       border-radius: 100%;
       width: 150px !important;
       height: 150px !important;
     }
+
     p {
       font-size: 14px;
       font-weight: bold;
@@ -497,8 +518,10 @@ ul.align-left {
   ul.align-right {
     text-align: left;
     list-style-type: "»";
+
     li {
       padding-left: 1em;
+
       &:after {
         content: "";
       }
@@ -595,6 +618,7 @@ ul.align-left {
 
       dt {
         font-weight: bold;
+
         &:after {
           content: ":";
         }
@@ -638,25 +662,21 @@ ul.align-left {
   justify-content: space-between;
 
   button {
-    background: linear-gradient(
-      83.39deg,
-      #a88848 6.2%,
-      #fceeb2 36.17%,
-      #ddb55b 73.65%,
-      #feefb1 137.01%
-    );
+    background: linear-gradient(83.39deg,
+        #a88848 6.2%,
+        #fceeb2 36.17%,
+        #ddb55b 73.65%,
+        #feefb1 137.01%);
     color: #7c5d1e;
     font-size: 16px;
   }
 
   h4 {
-    background: linear-gradient(
-      83.39deg,
-      #a88848 6.2%,
-      #fceeb2 36.17%,
-      #ddb55b 73.65%,
-      #feefb1 137.01%
-    );
+    background: linear-gradient(83.39deg,
+        #a88848 6.2%,
+        #fceeb2 36.17%,
+        #ddb55b 73.65%,
+        #feefb1 137.01%);
     color: #7c5d1e;
     font-size: 16px;
     font-weight: 600;
@@ -673,13 +693,11 @@ ul.align-left {
   font-weight: normal;
   text-align: center;
   margin: 0;
-  background: linear-gradient(
-    83.39deg,
-    #a88848 6.2%,
-    #fceeb2 36.17%,
-    #ddb55b 73.65%,
-    #feefb1 137.01%
-  );
+  background: linear-gradient(83.39deg,
+      #a88848 6.2%,
+      #fceeb2 36.17%,
+      #ddb55b 73.65%,
+      #feefb1 137.01%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -713,13 +731,11 @@ ul.align-left {
 }
 
 .inputWapper {
-  background: linear-gradient(
-    83.39deg,
-    #a88848 6.2%,
-    #fceeb2 36.17%,
-    #ddb55b 73.65%,
-    #feefb1 137.01%
-  );
+  background: linear-gradient(83.39deg,
+      #a88848 6.2%,
+      #fceeb2 36.17%,
+      #ddb55b 73.65%,
+      #feefb1 137.01%);
   padding: 1px;
   border-radius: 4px;
 
@@ -754,13 +770,16 @@ ul.align-left {
       flex-direction: column;
     }
   }
+
   .phase-inner img {
     display: none;
   }
+
   .phase-inner {
     padding-left: 5px !important;
     padding-right: 5px !important;
   }
+
   .chosen {
     width: 100%;
   }
