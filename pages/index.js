@@ -312,9 +312,9 @@ export default function Home() {
               <div className={styles["team-member"]}>
                 <img src="/groovy.gif" />
                 <p>
-                  GroovyEnzio
+                  GroovyEnzio 🍉
                   <br />
-                  Partner relations and Business Advisory{" "}
+                  Partner Relations and Business Advisory{" "}
                 </p>
               </div>
               <div className={styles["team-member"]}>
