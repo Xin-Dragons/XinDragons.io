@@ -318,7 +318,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={styles["team-member"]}>
-                <img src="/alex.webp" />
+                <img src="/alex-sm.gif" />
                 <p>
                   Alex
                   <br />
