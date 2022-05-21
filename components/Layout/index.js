@@ -47,7 +47,7 @@ export default function Layout({ children }) {
               <Link href="/"><a>Home</a></Link>
             </li>
             <li>
-              <Link href="https://claim.xindragons.io"><a>Claim</a></Link>
+              <Link href="https://stakooor.xindragons.io/"><a>Stakooor</a></Link>
             </li>
             <li>
               <Link href="/#lore"><a>Lore</a></Link>
