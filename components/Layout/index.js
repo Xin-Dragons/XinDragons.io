@@ -50,6 +50,9 @@ export default function Layout({ children }) {
               <Link href="https://stakooor.xindragons.io/"><a>Stakooor</a></Link>
             </li>
             <li>
+              <Link href="https://mutatooor.xindragons.io/"><a>Mutatooor</a></Link>
+            </li>
+            <li>
               <Link href="/#lore"><a>Lore</a></Link>
             </li>
             <li>
