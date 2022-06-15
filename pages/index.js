@@ -302,7 +302,7 @@ export default function Home() {
               </div>
 
               <div className={styles["team-member"]}>
-                <img src="/akarune.webp" />
+                <img src="/akarune.png" />
                 <p>
                   Akarune
                   <br />
