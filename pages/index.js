@@ -293,7 +293,7 @@ export default function Home() {
               </div>
 
               <div className={styles["team-member"]}>
-                <img src="/hal.png" />
+                <img src="/hal.jpg" />
                 <p>
                   Hal
                   <br />
