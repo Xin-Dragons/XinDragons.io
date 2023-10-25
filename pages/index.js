@@ -279,7 +279,7 @@ export default function Home() {
               <div className={styles["team-member"]}>
                 <a href="https://twitter.com/TheGentlemonke" target="_blank" rel="noreferrer"><img src="/gentlemonke.png" /></a>
                 <p>
-                  The Gentlemonke
+                  Gentlemonke
                   <br />
                   Development Lead
                 </p>
@@ -315,7 +315,7 @@ export default function Home() {
                 <p>
                   Alex
                   <br />
-                  Chief Design Officer
+                  Chief Design Officer / Dev
                 </p>
               </div>
             </div>
