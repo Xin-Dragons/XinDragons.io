@@ -230,7 +230,7 @@ export default function Home() {
       </section>
 
       <section className={classnames(styles.section, styles.roadmap)}>
-        <h2 id="roadmap" className={styles.heading}>Why would you need to hold some?</h2>
+        <h2 id="buy" className={styles.heading}>Why would you need to hold some?</h2>
         <br />
         <div className={styles['roadmap-inner']}>
           <div className={styles['roadmap-inner-wrap']}>

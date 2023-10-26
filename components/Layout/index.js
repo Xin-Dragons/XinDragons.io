@@ -59,7 +59,7 @@ export default function Layout({ children }) {
               <Link href="/#lore">Lore</Link>
             </li>
             <li>
-              <Link href="/#roadmap">Buy a dragon</Link>
+              <Link href="/#buy">Buy a dragon</Link>
             </li>
             <li>
               <Link href="/#team">Team</Link>
