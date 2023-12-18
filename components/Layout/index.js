@@ -75,7 +75,7 @@ export default function Layout({ children }) {
             <img src="/twitter.svg" alt="Xin Dragons Twitter" width={26} height={21} />
 
           </Link>
-          <Link href="https://discord.gg/E7PtG4Vh6C">
+          <Link href="https://discord.gg/4U4jYMW6dy">
 
             <img src="/discord.svg" alt="Xin Dragons Discord" width={26} height={20} />
 
@@ -101,7 +101,7 @@ export default function Layout({ children }) {
             <img src="/twitter-2.svg" alt="Xin Dragons Twitter" />
 
           </Link>
-          <Link href="https://discord.gg/E7PtG4Vh6C">
+          <Link href="https://discord.gg/4U4jYMW6dy">
 
             <img src="/discord-2.svg" alt="Xin Dragons Discord" />
 
